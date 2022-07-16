@@ -1,31 +1,20 @@
 <template>
 	<div id="container">
 		<el-form label-width="120px">
-			<el-form-item label="登录名:">
-				<el-input placeholder="输入登录名称" v-model="user.userName"></el-input>
+			<el-form-item label="职位:">
+				<el-input placeholder="输入职位" v-model="staff.p_name"></el-input>
 			</el-form-item>
-			<el-form-item label="登录密码:">
-				<el-input type="password" v-model="user.userPwd"></el-input>
+			<el-form-item label="姓名:">
+				<el-input placeholder="输入职位" v-model="staff.staff_name"></el-input>
 			</el-form-item>
-			<el-form-item label="确认密码:">
-				<el-input type="password" v-model="rePwd"></el-input>
+			<el-form-item label="编号:">
+				<el-input placeholder="输入职位" v-model="staff.staff_no"></el-input>
 			</el-form-item>
 			<el-form-item label="性别:">
-				<el-radio-group v-model="user.userSex">
-					<el-radio label="1">男</el-radio>
-					<el-radio label="2">女</el-radio>
-				</el-radio-group>
+				<el-input placeholder="输入职位" v-model="staff.staff_sex"></el-input>
 			</el-form-item>
-			<el-form-item label="学历:">
-				<el-select v-model="user.userXl">
-					<el-option label="本科" value="1"></el-option>
-					<el-option label="专科" value="2"></el-option>
-					<el-option label="本科以上" value="3"></el-option>
-				</el-select>
-			</el-form-item>
-			<el-form-item label="生日:">
-				<el-date-picker type="date" v-model="user.userBirthday"
-					value-format="YYYY-MM-DD"></el-date-picker>
+			<el-form-item label="手机号:">
+				<el-input placeholder="输入职位" v-model="staff.staff_phone"></el-input>
 			</el-form-item>
 			<el-form-item>
 				<el-button type="info" @click="add()">添加</el-button>
@@ -39,20 +28,19 @@
 		name:'UserRegView',
 		data(){
 			return {
-				user:{
-					userName:'',
-					userPwd:'',
-					userSex:'1',
-					userXl:'',
-					userBirthday:''
-				},
-				rePwd:''
+				staff:{
+					p_name:'',
+					staff_name:'',
+					staff_no:'1',
+					staff_sex:'',
+					staff_phone:''
+				}
 			}
 		},
 		methods:{
 			add(){
 				
-				this.$axios.post("http://localhost:8088/demo/user/reg",this.user)
+				this.$axios.post("http://localhost:8088/eStaff/user/reg",this.staff)
 				.then(rst=>{
 					if(rst.data.code==200){
 						//this.$message("操作结束");
