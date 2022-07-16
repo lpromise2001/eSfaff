@@ -4,10 +4,11 @@
 eStaff 人事管理系统。实现员工的基本信息管理，档案、合同、奖惩等 信息的录入，统计，人员流动管理等。
 
 #### 软件架构
-软件架构说明
+vue+springboot+element-plus
 
 
 #### 安装教程
+# 前端
 # vue01
 
 ## Project setup
@@ -34,13 +35,13 @@ cnpm install element-plus --save
 cnpm install @element-plus/icons-vue
 cnpm install axios --save
 ```
-
+# 后端idea打开/web路径下的spring项目
 
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  MySQL版本5.5.6
+2.  JDK版本1.8
+3.  maven版本3.84
 
 #### 参与贡献
 
