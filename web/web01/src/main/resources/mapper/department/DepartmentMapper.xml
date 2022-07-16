@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.web01.mapper.department.DepartmentMapper">
+    <select id="findByParam"
+            resultType="com.example.web01.po.department.Department"
+            parameterType="com.example.web01.dto.department.DepartmentDto">
+        select * from tbl_department
+        <where>
+            <if test="dep_name != null and dep_name != ''">
+                and dep_name  like concat('%',#{dep_name},'%')
+            </if>
+<!--            <if test="author != null and author != ''">
+                and author =#{author}
+            </if>
+            <if test="minPrice != null and minPrice != ''">
+                and price >=#{minPrice}
+            </if>
+            <if test="maxPrice != null and maxPrice !=''">
+                and price &lt;= #{maxPrice}
+            </if>-->
+        </where>
+    </select>
+</mapper>
+
+
+
+
