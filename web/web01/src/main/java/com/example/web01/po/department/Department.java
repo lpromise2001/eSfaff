@@ -3,6 +3,8 @@ package com.example.web01.po.department;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Setter
 @Getter
 public class Department {
@@ -11,5 +13,5 @@ public class Department {
     private String dep_manager;
     private String dep_phone;
     private String dep_description;
-    private String dep_date;
+    private Date dep_date;
 }

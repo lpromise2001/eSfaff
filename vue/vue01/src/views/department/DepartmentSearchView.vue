@@ -66,9 +66,9 @@
 		methods:{
 			search(){
 				this.$axios.post("http://localhost:8088/eStaff/department/findByParam",this.department)
-				.then(rst=>{
+				.then(result=>{
 					//console.log(rst.data)
-					this.departments=rst.data.rst;
+					this.departments=result.data.result;
 				}).catch(err=>{
 					console.log(err)
 				})

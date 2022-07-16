@@ -6,18 +6,31 @@
             parameterType="com.example.web01.dto.department.DepartmentDto">
         select * from tbl_department
         <where>
+            <if test="dep_id != null and dep_id != ''">
+                and dep_id =#{dep_id}
+            </if>
+
             <if test="dep_name != null and dep_name != ''">
                 and dep_name  like concat('%',#{dep_name},'%')
             </if>
-<!--            <if test="author != null and author != ''">
-                and author =#{author}
+
+            <if test="dep_manager != null and dep_manager != ''">
+                and dep_manager =#{dep_manager}
             </if>
-            <if test="minPrice != null and minPrice != ''">
-                and price >=#{minPrice}
+
+            <if test="dep_phone != null and dep_phone !=''">
+                and dep_phone &lt;= #{dep_phone}
             </if>
-            <if test="maxPrice != null and maxPrice !=''">
-                and price &lt;= #{maxPrice}
-            </if>-->
+
+            <if test="dep_description != null and dep_description !=''">
+                and dep_description &lt;= #{dep_description}
+            </if>
+
+            <if test="dep_date != null and dep_date !=''">
+                and dep_date &lt;= #{dep_date}
+            </if>
+
+
         </where>
     </select>
 </mapper>
