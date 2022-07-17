@@ -56,7 +56,7 @@
 		},
 		methods: {
 			search() {
-				this.$axios.post("http://localhost:8088/demo/book/findByParam", this.book)
+				this.$axios.post("http://localhost:9001/consumer/book/findByParam", this.book)
 					.then(rst => {
 						console.log(rst.data);
 						this.books = rst.data.result;

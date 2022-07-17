@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import users from './user'
 import departments from './department'
 import cases from './case'
+import CareerInfosRouter from './StaffInformation'
 
 const routes = [
  {
@@ -11,7 +12,8 @@ const routes = [
  },
   ...users,
   ...departments,
-  ...cases
+  ...cases,
+  ...CareerInfosRouter
 ]
 
 const router = createRouter({
