@@ -31,6 +31,16 @@
 						<el-menu-item index="/">添加商品</el-menu-item>
 						<el-menu-item index="/about">查询商品</el-menu-item>
 					</el-sub-menu>
+					<el-sub-menu index="3">
+						<template #title>
+							<el-icon><Tickets /></el-icon>
+							<span>报表管理</span>
+						</template>
+						<el-menu-item index="/NewStaff">新聘员工报表</el-menu-item>
+						<el-menu-item index="/LeaveStaff">离职员工报表</el-menu-item>
+						<el-menu-item index="/ChangDep">部门调动员工报表</el-menu-item>
+						<el-menu-item index="/ChangPos">岗位调动员工报表</el-menu-item>
+					</el-sub-menu>
 				</el-menu>
 			</div>
 			<div id="rightViews">
