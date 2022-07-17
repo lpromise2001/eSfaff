@@ -21,7 +21,7 @@
 							<span>用户信息维护</span>
 						</template>
 						<el-menu-item index="/userReg">添加用户</el-menu-item>
-						<el-menu-item index="/users">检索用户</el-menu-item>
+						<el-menu-item index="/UserChange">检索用户</el-menu-item>
 					</el-sub-menu>
 					<el-sub-menu index="2">
 						<template #title>

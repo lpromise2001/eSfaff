@@ -6,7 +6,7 @@ import NewStaffView from '../../views/form/NewStaffView.vue'
 import LeaveStaffView from '../../views/form/LeaveStaffView.vue'
 import ChangDepView from '../../views/form/ChangDepView.vue'
 import ChangPosView from '../../views/form/ChangPosView.vue'
-
+import UserChangeView from '../../views/induction/UserChangeView.vue'
 const users=[
 	
 	{
@@ -48,6 +48,11 @@ const users=[
 				path:'/ChangPos',
 				name:'ChangPos',
 				component:ChangPosView
+			},
+			{
+				path:'/UserChange',
+				name:'UserChange',
+				component:UserChangeView
 			}
 		]
 	}
