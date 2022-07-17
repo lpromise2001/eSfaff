@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="eurekaserver" />
+        <module name="eurekacommon" />
+        <module name="eurekaconsumer" />
+        <module name="eurekaprovider" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="eurekacommon" target="1.8" />
+      <module name="eurekaconsumer" target="1.8" />
+      <module name="eurekaprovider" target="1.8" />
+      <module name="eurekaserver" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

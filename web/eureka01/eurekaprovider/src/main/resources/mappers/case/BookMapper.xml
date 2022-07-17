@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.neu.eurekaprovider.mapper.BookMapper">
+    <insert id="save" parameterType="com.neu.eurekacommon.dto.BookDto">
+        insert into book(bookName, author, price)
+        values (#{bookName}, #{author}, #{price})
+    </insert>
+    <select id="findAll" parameterType="com.neu.eurekacommon.dto.BookDto" resultType="com.neu.eurekacommon.po.Book">
+        select * from book;
+    </select>
+</mapper>
