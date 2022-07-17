@@ -5,6 +5,7 @@ import com.example.web01.mapper.department.DepartmentMapper;
 import com.example.web01.po.department.Department;
 import com.example.web01.util.CommonResult;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.annotation.Resource;
 import java.util.List;
