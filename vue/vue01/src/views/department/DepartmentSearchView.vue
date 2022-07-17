@@ -36,12 +36,12 @@
 				:data="departments"
 				:border="true"
 				:stripe="true">
-				<el-table-column label="部门编号" prop="department.dep_id"></el-table-column>
-				<el-table-column label="部门名称" prop="department.dep_name"></el-table-column>
-				<el-table-column label="部门经理" prop="department.dep_manager"></el-table-column>
-				<el-table-column label="部门电话" prop="department.dep_phone"></el-table-column>
-				<el-table-column label="部门描述" prop="department.dep_description"></el-table-column>
-				<el-table-column label="建立日期" prop="department.dep_date"></el-table-column>
+				<el-table-column label="部门编号" prop="dep_id"></el-table-column>
+				<el-table-column label="部门名称" prop="dep_name"></el-table-column>
+				<el-table-column label="部门经理" prop="dep_manager"></el-table-column>
+				<el-table-column label="部门电话" prop="dep_phone"></el-table-column>
+				<el-table-column label="部门描述" prop="dep_description"></el-table-column>
+				<el-table-column label="建立日期" prop="dep_date"></el-table-column>
 			</el-table>
 		</div>
 	</div>
@@ -66,9 +66,9 @@
 		methods:{
 			search(){
 				this.$axios.post("http://localhost:8088/eStaff/department/findByParam",this.department)
-				.then(result=>{
-					console.log(result.data)
-					this.departments=result.data.result;
+				.then(rst=>{
+					console.log(rst.data)
+					this.departments=rst.data.result;
 				}).catch(err=>{
 					console.log(err)
 				})
