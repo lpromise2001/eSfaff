@@ -20,8 +20,8 @@
 							<el-icon><User /></el-icon>
 							<span>用户信息维护</span>
 						</template>
-						<el-menu-item index="/userReg">添加用户</el-menu-item>
-						<el-menu-item index="/UserChange">检索用户</el-menu-item>
+						<el-menu-item index="/userReg">员工入职</el-menu-item>
+						<el-menu-item index="/UserChange">员工异动</el-menu-item>
 					</el-sub-menu>
 					<el-sub-menu index="2">
 						<template #title>
@@ -29,6 +29,7 @@
 							<span>商品维护</span>
 						</template>
 						<el-menu-item index="/">添加商品</el-menu-item>
+						<el-menu-item index="/about">查询商品</el-menu-item>
 						<el-menu-item index="/about">查询商品</el-menu-item>
 					</el-sub-menu>
 					<el-sub-menu index="3">
