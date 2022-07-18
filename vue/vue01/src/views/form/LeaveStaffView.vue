@@ -45,7 +45,7 @@
 			<div>
 				<el-form label-width="100px" size="large">
 					<el-form-item>
-						<el-button type="primary">查询</el-button>
+						<el-button type="primary" @click="doFind()">查询</el-button>
 						<el-button type="primary" @click="doAdd()">添加</el-button>
 					</el-form-item>
 				</el-form>
@@ -53,6 +53,21 @@
 		</div>
 		
 		<div id="leave_down">
+			<el-table :data="leavestaffs" :border="true" :stripe="true">
+				<el-table-column label="序号" prop="num" fixed="left" style="width: 120px;"></el-table-column>
+				<el-table-column label="部门名称" prop="dep_name"></el-table-column>
+				<el-table-column label="岗位名称" prop="p_name"></el-table-column>
+				<el-table-column label="姓名" prop="staff_name"></el-table-column>
+				<el-table-column label="性别" prop="staff_sex"></el-table-column>
+				<el-table-column label="离职日期" prop="leave_date"></el-table-column>
+				<el-table-column label="离职原因" prop="leave_reason"></el-table-column>
+				<el-table-column label="选项" fixed="right" style="width: 120px;">
+					<template #default>
+					    <el-button link type="primary" size="small">编辑</el-button>
+					    <el-button link type="primary" size="small">删除</el-button>
+					</template>
+				</el-table-column>
+			</el-table>
 		</div>
 	</div>
 </template>
@@ -70,12 +85,22 @@
 					staff_sex:'',
 					leave_date_start:'',
 					leave_date_end:''
-				}
+				},
+				leavestaffs:[]
 			}
 		},
 		methods:{
 			doAdd(){
 				this.$router.push("/LeaveStaffAdd");
+			},
+			doFind(){
+				this.$axios.post("http://localhost:8088/eStaff/leaveStaff/findByParam",this.leavestaff)
+				.then(rst=>{
+					console.log(rst.data)
+					this.leavestaffs=rst.data.result;
+				}).catch(err=>{
+					console.log(err)
+				})
 			}
 		}
 	}
