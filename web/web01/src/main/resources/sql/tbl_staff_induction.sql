@@ -22,17 +22,22 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_staff_induction`;
 CREATE TABLE `tbl_staff_induction`  (
-  `p_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '员工职位\r\n',
-  `staff_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '员工姓名',
-  `staff_no` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '员工编号',
-  `staff_sex` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '员工性别',
-  `staff_phone` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '手机号码' 
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+   `p_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '员工职位\r\n',
+   `staff_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '员工姓名',
+   `staff_no` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '员工编号',
+   `staff_sex` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '员工性别',
+   `staff_phone` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '手机号码' ,
+   `status` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否实习',
+   `department` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '员工部门'
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tbl_staff_induction
 -- ----------------------------
-INSERT INTO `tbl_staff_induction` VALUES ('经理', '张三', '1', '男', '123');
-INSERT INTO `tbl_staff_induction` VALUES ('职员', '李四', '2', '女', '456');
+INSERT INTO `tbl_staff_induction` VALUES ('经理', '张三', '1', '男', '123', NULL, NULL);
+INSERT INTO `tbl_staff_induction` VALUES ('职员', '李四', '2', '女', '456', NULL, NULL);
+INSERT INTO `tbl_staff_induction` VALUES ('张三', '张三', '1', '12', '12', NULL, NULL);
+INSERT INTO `tbl_staff_induction` VALUES ('经理', '赵八', '5', '男', '123', NULL, NULL);
+INSERT INTO `tbl_staff_induction` VALUES ('a', '赵六', '1', '男', '123', NULL, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;
