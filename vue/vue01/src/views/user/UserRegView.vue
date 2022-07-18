@@ -5,16 +5,19 @@
 				<el-input placeholder="输入职位" v-model="staff.p_name"></el-input>
 			</el-form-item>
 			<el-form-item label="姓名:">
-				<el-input placeholder="输入职位" v-model="staff.staff_name"></el-input>
+				<el-input placeholder="输入姓名" v-model="staff.staff_name"></el-input>
 			</el-form-item>
 			<el-form-item label="编号:">
-				<el-input placeholder="输入职位" v-model="staff.staff_no"></el-input>
+				<el-input placeholder="输入编号" v-model="staff.staff_no"></el-input>
 			</el-form-item>
 			<el-form-item label="性别:">
-				<el-input placeholder="输入职位" v-model="staff.staff_sex"></el-input>
+				<el-input placeholder="输入性别" v-model="staff.staff_sex"></el-input>
 			</el-form-item>
 			<el-form-item label="手机号:">
-				<el-input placeholder="输入职位" v-model="staff.staff_phone"></el-input>
+				<el-input placeholder="输入手机号" v-model="staff.staff_phone"></el-input>
+			</el-form-item>
+			<el-form-item label="部门:">
+				<el-input placeholder="输入部门" v-model="staff.staff_department"></el-input>
 			</el-form-item>
 			<el-form-item>
 				<el-button type="info" @click="add()">添加</el-button>
@@ -33,7 +36,9 @@
 					staff_name:'',
 					staff_no:'1',
 					staff_sex:'',
-					staff_phone:''
+					staff_phone:'',
+					staff_status:'实习',
+					staff_department:''
 				}
 			}
 		},

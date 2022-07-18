@@ -30,7 +30,6 @@
 						</template>
 						<el-menu-item index="/">添加商品</el-menu-item>
 						<el-menu-item index="/about">查询商品</el-menu-item>
-						<el-menu-item index="/about">查询商品</el-menu-item>
 					</el-sub-menu>
 					<el-sub-menu index="3">
 						<template #title>
