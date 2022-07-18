@@ -7,6 +7,21 @@
         values (#{staff_no}, #{start_time}, #{end_time}, #{company_name}, #{job_description}, #{p_name},
                 #{monthly_salary}, #{notes})
     </insert>
+    <update id="infoUpdate" parameterType="com.example.web01.dto.StaffInformation.CareerInformationDto">
+        update tbl_staff_career_information
+        set start_time=#{start_time},
+        end_time=#{end_time},
+        company_name=#{company_name},
+        job_description=#{job_description},
+        p_name=#{p_name},
+        monthly_salary=#{monthly_salary},
+        notes=#{notes}
+        <where>
+            <if test="staff_no != null and staff_no != ''">
+                and staff_no = #{staff_no}
+            </if>
+        </where>
+    </update>
 
     <delete id="infoDel" parameterType="com.example.web01.dto.StaffInformation.CareerInformationDto">
         delete

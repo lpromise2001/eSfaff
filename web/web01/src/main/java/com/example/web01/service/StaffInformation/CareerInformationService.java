@@ -44,4 +44,14 @@ public class CareerInformationService {
         }
         return result;
     }
+
+    public CommonResult infoUpdate(CareerInformationDto dto) {
+        CommonResult result = new CommonResult();
+        int row = mapper.infoUpdate(dto);
+        if (row == 0) {
+            result.setCode(100);
+            result.setMsg("失败");
+        }
+        return result;
+    }
 }

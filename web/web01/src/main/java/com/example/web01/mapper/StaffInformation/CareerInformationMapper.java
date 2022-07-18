@@ -11,4 +11,5 @@ public interface CareerInformationMapper {
     List<CareerInformation> findByParam(CareerInformationDto dto);
     int infoAdd(CareerInformationDto dto);
     int infoDel(CareerInformationDto dto);
+    int infoUpdate(CareerInformationDto dto);
 }

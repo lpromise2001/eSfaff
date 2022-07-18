@@ -31,4 +31,9 @@ public class CareerInformationController {
     public CommonResult infoDel(@RequestBody CareerInformationDto[] dtos) {
         return service.infoDel(dtos);
     }
+
+    @RequestMapping("/infoUpdate")
+    public CommonResult infoUpdate(@RequestBody CareerInformationDto dto) {
+        return service.infoUpdate(dto);
+    }
 }
