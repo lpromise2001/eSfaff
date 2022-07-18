@@ -47,7 +47,7 @@
 				<el-form-item>
 					<div class="btn">
 						<el-button type="primary" @click="doBack()">返回</el-button>
-						<el-button type="primary">添加</el-button>
+						<el-button type="primary" @click="doAdd()">添加</el-button>
 					</div>
 						
 				</el-form-item>
@@ -74,6 +74,19 @@
 		methods:{
 			doBack(){
 				this.$router.push("/LeaveStaff");
+			},
+			doAdd(){
+				this.$axios.post("http://localhost:8088/eStaff/leaveStaff/doAdd",this.leavestaffadd)
+				.then(rst=>{
+					if(rst.data.code==200){
+						this.$alert("添加成功","提示");
+					}else {
+						this.$alert("添加失败","提示");
+					}
+					console.log(rst.data);
+				}).catch(err=>{
+					console.log(err);
+				})
 			}
 		}
 	}
