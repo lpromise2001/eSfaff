@@ -26,7 +26,7 @@
 					</el-form-item>
 				</el-form>
 			</div>
-			<div id="search_result">
+			<div id="search_result" v-if="isRouterAlive">
 				<el-table :data="CareerInfos" border stripe style="width: 100%" ref="multipleTable"
 					:default-sort="{ prop: 'staff_no', order: '' }" @selection-change="handleSelectionChange">
 					<el-table-column type="selection" width="55" v-if="true" />
@@ -64,6 +64,7 @@
 
 <script>
 	export default {
+		inject: ['reload'],
 		name: "CareerInfoSearchView",
 		props: {
 			checkbox: {
@@ -75,6 +76,9 @@
 				type: Array,
 				default: null
 			}
+		},
+		created() {
+			this.search();
 		},
 		data() {
 			return {
@@ -90,12 +94,18 @@
 				},
 				CareerInfos: [],
 				delCareerInfos: [],
-				multipleSelection: [],
+				isRouterAlive: true,
 				cur_page: 1,
 				del_list: [],
 			}
 		},
 		methods: {
+			reload() {
+				this.isRouterAlive = false;
+				this.$nextTick(function() {
+					this.isRouterAlive = true;
+				})
+			},
 			handleCurrentChange(val) {
 				this.cur_page = val;
 				this.getData();
@@ -112,27 +122,6 @@
 					this.$refs.multipleTable.clearSelection();
 				}
 			},
-			// delArray() {
-			// 	const length = this.multipleSelection.length;
-			// 	//将每条数据中的id存到ids数组中
-			// 	for (let i = 0; i < length; i++) {
-			// 		// console.log(this.multipleSelection[i]);
-			// 		this.ids.push(this.multipleSelection[i].id);
-			// 		console.log(this.ids[i]);
-			// 	}
-			// 	this.$axios.post("http://localhost:8088/eStaff/CareerInfo/infoDel", this.delCareerInfos)
-			// 		.then(rst => {
-			// 			if (rst.data.code == 200) {
-			// 				// this.$message("操作结束");
-			// 				this.$alert("操作成功", "成功");
-			// 			} else {
-			// 				this.$alert("操作失败", "失败");
-			// 			}
-			// 			console.log(rst.data);
-			// 		}).catch(err => {
-			// 			console.log(err);
-			// 		})
-			// },
 			formatter(row, column) {
 				return row.address;
 			},
@@ -144,25 +133,14 @@
 			},
 			handleDelete(index, row) {
 				this.$message.error('删除第' + (index + 1) + '行');
-			},
-			delAll() {
-				const self = this,
-					length = self.multipleSelection.length;
-				let str = '';
-				self.del_list = self.del_list.concat(self.multipleSelection);
-				
-				// console.log(self.del_list);
-				for (let i = 0; i < length; i++) {
-					str += self.multipleSelection[i] + ' ';
-				}
-				str = JSON.stringify(self.multipleSelection);
-				console.log(str);
-				
-				this.$axios.post("http://localhost:8088/eStaff/CareerInfo/infoDel", self.del_list)
+				this.del_list = this.del_list.concat(this.CareerInfos[index]);
+				console.log(this.del_list);
+				this.$axios.post("http://localhost:8088/eStaff/CareerInfo/infoDel", this.del_list)
 					.then(rst => {
 						if (rst.data.code == 200) {
 							// this.$message("操作结束");
 							this.$alert("操作成功", "成功");
+							this.$message.error('删除了' + str);
 						} else {
 							this.$alert("操作失败", "失败");
 						}
@@ -170,11 +148,42 @@
 					}).catch(err => {
 						console.log(err);
 					})
-				self.$message.error('删除了' + str);
-				
+
+				this.del_list = [];
+
+				this.search()
+			},
+			delAll() {
+				const length = this.multipleSelection.length;
+				let str = '';
+				this.del_list = this.del_list.concat(this.multipleSelection);
+
+				// console.log(this.del_list);
+				for (let i = 0; i < length; i++) {
+					str += this.multipleSelection[i] + ' ';
+				}
+				str = JSON.stringify(this.multipleSelection);
+				console.log(str);
+
+				this.$axios.post("http://localhost:8088/eStaff/CareerInfo/infoDel", this.del_list)
+					.then(rst => {
+						if (rst.data.code == 200) {
+							// this.$message("操作结束");
+							this.$alert("操作成功", "成功");
+							this.$message.error('删除了' + str);
+						} else {
+							this.$alert("操作失败", "失败");
+						}
+						console.log(rst.data);
+					}).catch(err => {
+						console.log(err);
+					})
+				// this.$message.error('删除了' + str);
+
 				// 重置选中内容
-				self.multipleSelection = [];
-				self.del_list = [];
+				this.multipleSelection = [];
+				this.del_list = [];
+				this.search();
 			},
 			handleSelectionChange(val) {
 				this.multipleSelection = val;
