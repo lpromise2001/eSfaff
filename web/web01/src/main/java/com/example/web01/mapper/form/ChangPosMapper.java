@@ -11,4 +11,6 @@ public interface ChangPosMapper {
 
     List<ChangPos> findByParam(ChangPosDto dto);
 
+    int Add(ChangPosDto dto);
+
 }

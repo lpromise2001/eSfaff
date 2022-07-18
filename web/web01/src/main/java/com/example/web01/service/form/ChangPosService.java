@@ -20,4 +20,14 @@ public class ChangPosService {
         rst.setResult(changPos);
         return rst;
     }
+
+    public CommonResult doAdd(ChangPosDto dto) {
+        CommonResult rst = new CommonResult();
+        int row = changPosMapper.Add(dto);
+        if(row==0){
+            rst.setCode(100);
+            rst.setMsg("添加失败");
+        }
+        return rst;
+    }
 }
