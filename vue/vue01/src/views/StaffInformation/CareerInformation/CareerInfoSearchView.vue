@@ -27,19 +27,16 @@
 				</el-form>
 			</div>
 			<div id="search_result">
-				<el-table :data="CareerInfos" :border="true" :stripe="true" style="width: 100%" ref="multipleTable">
+				<el-table :data="CareerInfos" :border="true" :stripe="true" style="width: 100%" ref="multipleTable"
+					:default-sort="{ prop: 'staff_no', order: '' }">
 					<el-table-column type="selection" width="55" />
-					<el-table-column label="员工编号" prop="staff_no"></el-table-column>
-					<el-table-column label="起始年月" prop="start_time"></el-table-column>
-					<el-table-column label="截止年月" prop="end_time"></el-table-column>
+					<el-table-column label="员工编号" sortable prop="staff_no"></el-table-column>
+					<el-table-column label="起始年月" sortable prop="start_time"></el-table-column>
+					<el-table-column label="截止年月" sortable prop="end_time"></el-table-column>
 					<el-table-column label="所在单位名称" prop="company_name"></el-table-column>
 					<el-table-column label="从事工作内容" prop="job_description"></el-table-column>
 					<el-table-column label="担任职务" prop="p_name"></el-table-column>
-					<el-table-column label="月薪">
-						<template #default="scope">
-							{{scope.row.monthly_salary}}
-						</template>
-					</el-table-column>
+					<el-table-column label="月薪" sortable prop="monthly_salary"></el-table-column>
 					<el-table-column label="备注" prop="notes"></el-table-column>
 				</el-table>
 				<el-pagination small background layout="prev, pager, next" :total="50" class="mt-4" />
@@ -149,7 +146,7 @@
 		padding: 20px;
 		box-sizing: border-box;
 	}
-	
+
 	#certer #search-content {
 		width: 100%;
 		display: flex;
