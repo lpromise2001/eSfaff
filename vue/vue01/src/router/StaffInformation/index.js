@@ -5,9 +5,11 @@ import CareerInfoUpdateView from '../../views/StaffInformation/CareerInformation
 const CareerInfosRouter = [{
 		path: '/CareerInfoSearch',
 		name: 'CareerInfoSearch',
-		component: CareerInfoSearchView
-	},
-	{
+		component: CareerInfoSearchView,
+		children: [
+
+		]
+	}, {
 		path: '/CareerInfoAdd',
 		name: 'CareerInfoAdd',
 		component: CareerInfoAddView

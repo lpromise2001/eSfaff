@@ -1,64 +1,129 @@
 <template>
+
 	<div id="container">
-		<div id="top">
-			<div id="logo">
-				东软教育
-			</div>
-			<div id="info">
-				<!-- 				欢迎【{{user.userName}}】
-				<router-link to="" @click.native="doExit()">注销</router-link> -->
-			</div>
-		</div>
-		<div id="center">
-			<div id="search_content">
-				<el-form label-width="100px" size="large">
-					<el-form-item label="员工编号:">
-						<el-input placeholder="支持模糊查询" v-model="CareerInfo.staff_no"></el-input>
-					</el-form-item>
-					<el-form-item label="公司名称">
-						<el-input placeholder="支持模糊查询" v-model="CareerInfo.company_name"></el-input>
-					</el-form-item>
-					<el-form-item label="岗位:">
-						<el-input placeholder="支持模糊查询" v-model="CareerInfo.p_name"></el-input>
-					</el-form-item>
-					<el-form-item>
-						<el-button type="primary" @click="search()">搜索</el-button>
-					</el-form-item>
-				</el-form>
-			</div>
-			<div id="search_result" v-if="isRouterAlive">
-				<el-table :data="CareerInfos" border stripe style="width: 100%" ref="multipleTable"
-					:default-sort="{ prop: 'staff_no', order: '' }" @selection-change="handleSelectionChange">
-					<el-table-column type="selection" width="55" v-if="true" />
-					<el-table-column label="员工编号" sortable prop="staff_no"></el-table-column>
-					<el-table-column label="起始年月" sortable prop="start_time"></el-table-column>
-					<el-table-column label="截止年月" sortable prop="end_time"></el-table-column>
-					<el-table-column label="所在单位名称" prop="company_name"></el-table-column>
-					<el-table-column label="从事工作内容" prop="job_description"></el-table-column>
-					<el-table-column label="担任职务" prop="p_name"></el-table-column>
-					<el-table-column label="月薪" sortable prop="monthly_salary"></el-table-column>
-					<el-table-column label="备注" prop="notes"></el-table-column>
-					<el-table-column label="操作" width="180px">
-						<template #default="scope">
-							<el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑
-							</el-button>
-							<el-button size="small" @click="handleDelete(scope.$index, scope.row)">删除
-							</el-button>
-						</template>
-					</el-table-column>
-				</el-table>
-				<el-button size="primary" type="primary" @click="toggleSelection()">清除选中</el-button>
-				<el-button type="primary" icon="delete" class="handle-del mr10" @click="delAll()">批量删除</el-button>
-				<div class="pagination">
-					<el-pagination @current-change="handleCurrentChange" layout="prev, pager, next" :total="100">
-					</el-pagination>
+		<el-header height="auto" style="padding: 10px;">
+			<div id="top">
+				<div id="logo">
+					东软教育
 				</div>
-				<!-- <el-pagination small background layout="prev, pager, next" :total="50" class="mt-4" /> -->
+				<div id="info">
+					<!-- 				欢迎【{{user.userName}}】
+					<router-link to="" @click.native="doExit()">注销</router-link> -->
+				</div>
 			</div>
-		</div>
-		<div id="bottom">
-			版权归东软教育所有
-		</div>
+			<div class="h-6">
+				<el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal"
+					background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" @select="handleSelect"
+					router>
+					<el-menu-item index="/">返回主页面</el-menu-item>
+					<el-menu-item index="/CareerInfoAdd">添加员工信息</el-menu-item>
+				</el-menu>
+			</div>
+		</el-header>
+
+
+		<el-container>
+			<el-aside width="400px" style="padding: 10px;">
+				<div id="search_content">
+					<el-form label-width="100px" size="large">
+						<el-form-item width="200px">
+							<el-input placeholder="支持模糊查询" v-model="CareerInfo.staff_no">
+								<template #prepend>
+									<el-icon>
+										<User />
+									</el-icon>
+									&nbsp;员工编号
+								</template>
+							</el-input>
+						</el-form-item>
+						<el-form-item>
+							<el-input placeholder="支持模糊查询" v-model="CareerInfo.company_name">
+								<template #prepend>
+									<el-icon>
+										<OfficeBuilding />
+									</el-icon>
+									&nbsp;公司名称
+								</template>
+							</el-input>
+						</el-form-item>
+						<el-form-item>
+							<el-input placeholder="支持模糊查询" v-model="CareerInfo.p_name">
+								<template #prepend>
+									<el-icon>
+										<UserFilled />
+									</el-icon>
+									&nbsp;岗位
+								</template>
+							</el-input>
+						</el-form-item>
+						<el-form-item>
+							<el-button type="primary" @click="search()">搜索</el-button>
+						</el-form-item>
+					</el-form>
+				</div>
+			</el-aside>
+			<el-main>
+				<div id="search_result" v-if="isRouterAlive" style="padding: 10px;">
+					<el-table :data="CareerInfos" border stripe style="width: 100%" ref="multipleTable"
+						:default-sort="{ prop: 'staff_no', order: '' }" @selection-change="handleSelectionChange"
+						size="large">
+						<el-table-column type="selection" width="55" v-if="true" />
+						<el-table-column label="员工编号" sortable prop="staff_no" width="120">
+							<template #default="scope">
+								<div style="display: flex; align-items: center">
+									<el-icon>
+										<User />
+									</el-icon>
+									<span style="margin-left: 10px">{{ scope.row.staff_no }}</span>
+								</div>
+							</template>
+						</el-table-column>
+						<el-table-column label="起始年月" sortable prop="start_time" width="120"></el-table-column>
+						<el-table-column label="截止年月" sortable prop="end_time" width="120"></el-table-column>
+						<el-table-column label="所在单位名称" prop="company_name"></el-table-column>
+						<el-table-column label="从事工作内容" prop="job_description"></el-table-column>
+						<el-table-column label="担任职务" prop="p_name" width="100"></el-table-column>
+						<el-table-column label="月薪" sortable prop="monthly_salary" width="100"></el-table-column>
+						<el-table-column label="备注" prop="notes" width="100"></el-table-column>
+						<el-table-column label="操作" width="150px">
+							<template #default="scope">
+								<el-button size="small" type="primary" :icon="Edit"
+									@click="handleEdit(scope.$index, scope.row)">编辑
+								</el-button>
+								<el-button size="small" type="danger" :icon="Delete"
+									@click="handleDelete(scope.$index, scope.row)">删除
+								</el-button>
+							</template>
+						</el-table-column>
+					</el-table>
+				</div>
+			</el-main>
+		</el-container>
+
+		<el-footer height="auto">
+			<el-row :gutter="20">
+				<!-- <el-col :span="6" :offset="6"></el-col> -->
+				<el-col :span="4" :offset="20">
+					<el-button size="large" type="primary" @click="toggleSelection()">清除选中</el-button>
+					<el-button size="large" type="primary" icon="delete" class="handle-del mr10" @click="delAll()">批量删除
+					</el-button>
+				</el-col>
+			</el-row>
+
+			<div class="pagination">
+				<el-row :gutter="20">
+					<el-col :span="4" :offset="10">
+						<el-pagination @current-change="handleCurrentChange" layout="prev, pager, next" :total="100"
+							background class="mt-4">
+						</el-pagination>
+					</el-col>
+				</el-row>
+			</div>
+
+			<div id="bottom">
+				版权归东软教育所有
+			</div>
+		</el-footer>
 	</div>
 </template>
 
@@ -246,20 +311,14 @@
 		text-decoration: none;
 	}
 
-	#center {
-		width: 100%;
-		flex: 1;
-		/*占父容器剩下容量的一份*/
-		display: flex;
-		padding: 20px;
-		box-sizing: border-box;
+	#search-content {
+		height: 100%;
+		background-color: #2C3E50;
 	}
 
-	#certer #search-content {
-		width: 100%;
-		display: flex;
-		padding: 20px;
-		box-sizing: border-box;
+	#search_result {
+		height: 100%;
+		padding: 10px;
 	}
 
 	#bottom {
