@@ -1,5 +1,4 @@
 <template>
-
 	<div id="container">
 		<el-header height="auto" style="padding: 10px;">
 			<div id="top">
@@ -20,7 +19,6 @@
 				</el-menu>
 			</div>
 		</el-header>
-
 
 		<el-container>
 			<el-aside width="400px" style="padding: 10px;">
