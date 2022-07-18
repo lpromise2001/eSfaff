@@ -1,11 +1,25 @@
 <template>
 	<div id="container">
 		<el-form-item>
-		<el-button type="primary" size='large' @click="search1()">搜索</el-button>
+		<el-button type="primary" size='large' @click="search1()">实习员工查询</el-button>
 	</el-form-item>
 	<el-form-item>
-		<el-button type="primary" size='large' @click="search2()">搜索</el-button>
+		<el-button type="primary" size='large' @click="search2()">正式员工查询</el-button>
 	</el-form-item>
+	<div id="search_result">
+		<el-table
+			:data="staffs"
+			:border="true"
+			:stripe="true">
+			<el-table-column label="职位" prop="p_name"></el-table-column>
+			<el-table-column label="姓名" prop="staff_name"></el-table-column>
+			<el-table-column label="工号" prop="staff_no"></el-table-column>
+			<el-table-column label="性别" prop="staff_sex"></el-table-column>
+			<el-table-column label="手机号" prop="staff_phone"></el-table-column>
+			<el-table-column label="状态" prop="staff_status"></el-table-column>
+			<el-table-column label="部门" prop="staff_department"></el-table-column>
+		</el-table>
+	</div>
 	</div>
 </template>
 
@@ -15,26 +29,41 @@
 		data(){
 			return{
 				staff1:{
-					
+					p_name:'',
+					staff_name:'',
+					staff_no:'',
+					staff_sex:'',
+					staff_phone:'',
+					staff_status:'实习',
+					staff_department:''
 				},
-				users:[]
+				staff2:{
+					p_name:'',
+					staff_name:'',
+					staff_no:'',
+					staff_sex:'',
+					staff_phone:'',
+					staff_status:'正式',
+					staff_department:''
+				},
+				staffs:[]
 			}
 		},
 		methods:{
 			search1(){
-				this.$axios.post("http://localhost:8088/demo/user/search",this.user)
+				this.$axios.post("http://localhost:8088/eStaff/user/search1",this.staff1)
 				.then(rst=>{
 					//console.log(rst.data)
-					this.users=rst.data.rst;
+					this.staffs=rst.data.result;
 				}).catch(err=>{
 					console.log(err)
 				})
 			},
 			search2(){
-				this.$axios.post("http://localhost:8088/demo/user/search",this.user)
+				this.$axios.post("http://localhost:8088/eStaff/user/search2",this.staff2)
 				.then(rst=>{
-					//console.log(rst.data)
-					this.users=rst.data.rst;
+					console.log(rst.data)
+					this.staffs=rst.data.result;
 				}).catch(err=>{
 					console.log(err)
 				})
