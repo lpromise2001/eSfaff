@@ -14,7 +14,6 @@
  Date: 16/07/2022 16:34:31
 */
 
-SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
