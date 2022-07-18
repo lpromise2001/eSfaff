@@ -84,10 +84,10 @@
 						if (rst.data.code == 200) {
 							// this.$message("操作结束");
 							this.$alert("操作成功", "成功");
+							this.$router.push("/CareerInfoSearch")
 						} else {
 							this.$alert("操作失败", "失败");
 						}
-						console.log(rst.data);
 					}).catch(err => {
 						console.log(err);
 					})
@@ -142,6 +142,7 @@
 		display: flex;
 		padding: 20px;
 		box-sizing: border-box;
+		/* justify-content: center; */
 	}
 
 	#bottom {
