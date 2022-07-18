@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.web01.mapper.form.ChangDepMapper">
+    <insert id="Add" parameterType="com.example.web01.dto.form.ChangDepDto">
+        insert into tbl_chang_department(old_dep_name,new_dep_name,staff_name,staff_sex,dep_chang_date,dep_chang_reason)
+        values(#{old_dep_name},#{new_dep_name},#{staff_name},#{staff_sex},#{dep_chang_date},#{dep_chang_reason})
+    </insert>
     <select id="findByParam"
             resultType="com.example.web01.po.form.ChangDep"
             parameterType="com.example.web01.dto.form.ChangDepDto">

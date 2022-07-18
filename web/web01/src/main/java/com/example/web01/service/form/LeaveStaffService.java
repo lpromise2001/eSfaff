@@ -20,4 +20,13 @@ public class LeaveStaffService {
         rst.setResult(leaveStaffs);
         return rst;
     }
+    public CommonResult doAdd(LeaveStaffDto dto){
+        CommonResult rst = new CommonResult();
+        int row=leaveStaffMapper.Add(dto);
+        if(row==0){
+            rst.setCode(100);
+            rst.setMsg("添加失败");
+        }
+        return rst;
+    }
 }

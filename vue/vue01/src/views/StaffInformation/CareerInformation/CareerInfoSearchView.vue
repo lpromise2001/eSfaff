@@ -20,47 +20,47 @@
 			</div>
 		</el-header>
 
-		<el-container>
-			<el-aside width="400px" style="padding: 10px;">
-				<div id="search_content">
-					<el-form label-width="100px" size="large">
-						<el-form-item width="200px">
-							<el-input placeholder="支持模糊查询" v-model="CareerInfo.staff_no">
-								<template #prepend>
-									<el-icon>
-										<User />
-									</el-icon>
-									&nbsp;员工编号
-								</template>
-							</el-input>
-						</el-form-item>
-						<el-form-item>
-							<el-input placeholder="支持模糊查询" v-model="CareerInfo.company_name">
-								<template #prepend>
-									<el-icon>
-										<OfficeBuilding />
-									</el-icon>
-									&nbsp;公司名称
-								</template>
-							</el-input>
-						</el-form-item>
-						<el-form-item>
-							<el-input placeholder="支持模糊查询" v-model="CareerInfo.p_name">
-								<template #prepend>
-									<el-icon>
-										<UserFilled />
-									</el-icon>
-									&nbsp;岗位
-								</template>
-							</el-input>
-						</el-form-item>
-						<el-form-item>
-							<el-button type="primary" @click="search()">搜索</el-button>
-						</el-form-item>
-					</el-form>
-				</div>
-			</el-aside>
+		<el-container direction="horizontal">
 			<el-main>
+				<el-row :gutter="20">
+					<el-col :span="22" :offset="2">
+						<el-form label-width="100px" size="large" label-position='left' :inline="true">
+							<el-form-item width="200px">
+								<el-input placeholder="支持模糊查询" v-model="CareerInfo.staff_no">
+									<template #prepend>
+										<el-icon>
+											<User />
+										</el-icon>
+										&nbsp;员工编号
+									</template>
+								</el-input>
+							</el-form-item>
+							<el-form-item>
+								<el-input placeholder="支持模糊查询" v-model="CareerInfo.company_name">
+									<template #prepend>
+										<el-icon>
+											<OfficeBuilding />
+										</el-icon>
+										&nbsp;公司名称
+									</template>
+								</el-input>
+							</el-form-item>
+							<el-form-item>
+								<el-input placeholder="支持模糊查询" v-model="CareerInfo.p_name">
+									<template #prepend>
+										<el-icon>
+											<UserFilled />
+										</el-icon>
+										&nbsp;岗位
+									</template>
+								</el-input>
+							</el-form-item>
+							<el-form-item>
+								<el-button type="primary" @click="search()">搜索</el-button>
+							</el-form-item>
+						</el-form>
+					</el-col>
+				</el-row>
 				<div id="search_result" v-if="isRouterAlive" style="padding: 10px;">
 					<el-table :data="CareerInfos" border stripe style="width: 100%" ref="multipleTable"
 						:default-sort="{ prop: 'staff_no', order: '' }" @selection-change="handleSelectionChange"
@@ -85,11 +85,9 @@
 						<el-table-column label="备注" prop="notes" width="100"></el-table-column>
 						<el-table-column label="操作" width="150px">
 							<template #default="scope">
-								<el-button size="small" type="primary" :icon="Edit"
-									@click="handleEdit(scope.$index, scope.row)">编辑
+								<el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">编辑
 								</el-button>
-								<el-button size="small" type="danger" :icon="Delete"
-									@click="handleDelete(scope.$index, scope.row)">删除
+								<el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除
 								</el-button>
 							</template>
 						</el-table-column>
@@ -101,7 +99,7 @@
 		<el-footer height="auto">
 			<el-row :gutter="20">
 				<!-- <el-col :span="6" :offset="6"></el-col> -->
-				<el-col :span="4" :offset="20">
+				<el-col :span="6" :offset="18">
 					<el-button size="large" type="primary" @click="toggleSelection()">清除选中</el-button>
 					<el-button size="large" type="primary" icon="delete" class="handle-del mr10" @click="delAll()">批量删除
 					</el-button>
@@ -127,19 +125,7 @@
 
 <script>
 	export default {
-		inject: ['reload'],
 		name: "CareerInfoSearchView",
-		props: {
-			checkbox: {
-				type: Boolean,
-				default: false
-			},
-			selectRow: {
-				//父组件传递过来的要选中的行的id
-				type: Array,
-				default: null
-			}
-		},
 		created() {
 			this.search();
 		},
@@ -163,12 +149,6 @@
 			}
 		},
 		methods: {
-			reload() {
-				this.isRouterAlive = false;
-				this.$nextTick(function() {
-					this.isRouterAlive = true;
-				})
-			},
 			handleCurrentChange(val) {
 				this.cur_page = val;
 				this.getData();
@@ -307,11 +287,6 @@
 
 	#top a {
 		text-decoration: none;
-	}
-
-	#search-content {
-		height: 100%;
-		background-color: #2C3E50;
 	}
 
 	#search_result {

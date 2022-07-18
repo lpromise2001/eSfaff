@@ -9,6 +9,10 @@ import java.util.List;
 @Mapper
 public interface LeaveStaffMapper {
 
+    /*查询信息*/
     List<LeaveStaff> findByParam(LeaveStaffDto dto);
+
+    /*添加信息*/
+    int Add(LeaveStaffDto dto);
 
 }

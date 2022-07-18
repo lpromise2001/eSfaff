@@ -19,5 +19,14 @@ public class NewStaffService {
         rst.setResult(newStaffs);
         return rst;
     }
+    public CommonResult doAdd(NewStaffDto dto){
+        CommonResult rst = new CommonResult();
+        int row = newStaffMapper.Add(dto);
+        if(row==0) {
+            rst.setCode(100);
+            rst.setMsg("添加失败");
+        }
+        return rst;
+    }
 }
 

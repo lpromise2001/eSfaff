@@ -20,4 +20,8 @@ public class ChangDepController {
     public CommonResult findByParam(@RequestBody ChangDepDto dto){
         return changDepService.findByParam(dto);
     }
+    @RequestMapping("/doAdd")
+    public CommonResult doAdd(@RequestBody ChangDepDto dto) {
+        return changDepService.doAdd(dto);
+    }
 }

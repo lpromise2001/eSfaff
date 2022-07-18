@@ -11,4 +11,6 @@ public interface NewStaffMapper {
 
     List<NewStaff> findByParam(NewStaffDto dto);
 
+    int Add(NewStaffDto dto);
+
 }
