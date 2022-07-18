@@ -5,6 +5,7 @@ import departments from './department'
 import cases from './case'
 import CareerInfosRouter from './StaffInformation'
 import forms from './form'
+import position from './position'
 
 const routes = [
  {
@@ -15,7 +16,8 @@ const routes = [
   ...departments,
   ...cases,
   ...CareerInfosRouter,
-  ...forms
+  ...forms,
+  ...position
 ]
 
 const router = createRouter({
