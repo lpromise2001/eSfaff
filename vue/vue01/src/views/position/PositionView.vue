@@ -67,6 +67,15 @@
 				}).catch(err=>{
 					console.log(err)
 				})
+			},
+			add(){
+				this.$axios.post("http://localhost:8088/eStaff/position/addPosition",this.position)
+				.then(rst=>{
+					 if(rst.data.code==200){
+						this.$alert("部门添加成功！","提示")
+					}else
+						this.$alert("部门添加失败！","提示")
+					})
 			}
 		},
 	}
