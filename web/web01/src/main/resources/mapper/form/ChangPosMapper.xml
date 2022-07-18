@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.web01.mapper.form.ChangPosMapper">
+    <select id="findByParam"
+            resultType="com.example.web01.po.form.ChangPos"
+            parameterType="com.example.web01.dto.form.ChangPosDto">
+        select * from tbl_chang_position
+        <where>
+            <if test="dep_name != null and dep_name != ''">
+                and dep_name like concat('%',#{dep_name},'%')
+            </if>
+            <if test="old_p_name != null and old_p_name != ''">
+                and old_p_name like concat('%',#{old_p_name},'%')
+            </if>
+            <if test="new_p_name != null and new_p_name != ''">
+                and new_p_name like concat('%',#{new_p_name},'%')
+            </if>
+            <if test="staff_name != null and staff_name != ''">
+                and staff_name like concat('%',#{staff_name},'%')
+            </if>
+            <if test="staff_sex != null and staff_sex != ''">
+                and staff_sex = #{staff_sex}
+            </if>
+            <if test="p_chang_date_start != null and p_chang_date_start != ''">
+                and p_chang_date >= #{p_chang_date_start}
+            </if>
+            <if test="p_chang_date_end != null and p_chang_date_end != ''">
+                and p_chang_date &lt;= #{p_chang_date_end}
+            </if>
+        </where>
+    </select>
+</mapper>
