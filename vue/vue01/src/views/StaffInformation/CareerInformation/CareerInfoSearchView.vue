@@ -27,7 +27,8 @@
 				</el-form>
 			</div>
 			<div id="search_result">
-				<el-table :data="CareerInfos" :border="true" :stripe="true">
+				<el-table :data="CareerInfos" :border="true" :stripe="true" style="width: 100%" ref="multipleTable">
+					<el-table-column type="selection" width="55" />
 					<el-table-column label="员工编号" prop="staff_no"></el-table-column>
 					<el-table-column label="起始年月" prop="start_time"></el-table-column>
 					<el-table-column label="截止年月" prop="end_time"></el-table-column>
@@ -41,6 +42,7 @@
 					</el-table-column>
 					<el-table-column label="备注" prop="notes"></el-table-column>
 				</el-table>
+				<el-pagination small background layout="prev, pager, next" :total="50" class="mt-4" />
 			</div>
 		</div>
 		<div id="bottom">
@@ -64,18 +66,35 @@
 					monthly_salary: 0,
 					notes: ''
 				},
-				CareerInfos: []
+				CareerInfos: [],
+				multipleSelection: [],
+				multipleTableRef: []
 			}
 		},
 		methods: {
 			search() {
-				// this.$axios.post("http://localhost:8088/demo/book/findByParam", this.book)
-				// 	.then(rst => {
-				// 		console.log(rst.data);
-				// 		this.books = rst.data.result;
-				// 	}).catch(err => {
-				// 		console.log(err);
-				// 	})
+				this.$axios.post("http://localhost:8088/eStaff/CareerInfo/findByParam", this.CareerInfo)
+					.then(rst => {
+						console.log(rst.data);
+						this.CareerInfos = rst.data.result;
+					}).catch(err => {
+						console.log(err);
+					})
+			},
+			handleSelectionChange(val) {
+				this.multipleSelection.value = val;
+			},
+			toggleSelection(rows) {
+				if (rows) {
+					rows.forEach((row) => {
+						// TODO: improvement typing when refactor table
+						// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+						// @ts-expect-error
+						this.$refs.multipleTable.toggleRowSelection(row)
+					})
+				} else {
+					this.$refs.multipleTable.clearSelection();
+				}
 			}
 		}
 	}
@@ -92,7 +111,7 @@
 		/* background-image: url("../../assets/image03.jpg"); */
 		background-color: aliceblue;
 	}
-	
+
 	#top {
 		width: 100%;
 		height: 80px;
@@ -103,7 +122,7 @@
 		padding: 0px 20px;
 		box-sizing: border-box;
 	}
-	
+
 	#top #logo {
 		font-size: 50px;
 		font-family: 楷体;
@@ -111,15 +130,15 @@
 		font-style: italic;
 		font-weight: bolder;
 	}
-	
+
 	#top #info {
 		font-size: 12px;
 	}
-	
+
 	#top a {
 		text-decoration: none;
 	}
-	
+
 	#center {
 		width: 100%;
 		flex: 1;
@@ -129,6 +148,13 @@
 		box-sizing: border-box;
 	}
 	
+	#certer #search-content {
+		width: 100%;
+		display: flex;
+		padding: 20px;
+		box-sizing: border-box;
+	}
+
 	#bottom {
 		width: 100%;
 		height: 30px;
