@@ -37,7 +37,7 @@
 							</el-form-item>
 
 							<el-form-item label="语言">
-								<el-select v-model="userInfo.foreign_languages">
+								<el-select v-model="foreignLanInfo.foreign_languages">
 									<el-option label="英语" value="英语"></el-option>
 									<el-option label="法语" value="法语"></el-option>
 									<el-option label="德语" value="德语"></el-option>
@@ -46,7 +46,7 @@
 							</el-form-item>
 
 							<el-form-item label="熟练程度">
-								<el-select v-model="userInfo.foreign_languages">
+								<el-select v-model="foreignLanInfo.foreign_languages">
 									<el-option label="完全不懂" value="0"></el-option>
 									<el-option label="少量，不能进行业务沟通" value="1"></el-option>
 									<el-option label="有限的业务沟通" value="2"></el-option>
@@ -79,18 +79,19 @@
 							</template>
 						</el-table-column>
 
-						<el-table-column label="外国语种" sortable prop="foreign_languages" width="120"></el-table-column>
+						<el-table-column label="外国语种" prop="foreign_languages" width="100"></el-table-column>
 
-						<el-table-column label="熟练程度" sortable prop="proficiency_in_foreign_languages" width="200">
+						<el-table-column label="熟练程度" width="200">
+							<template #default="scope">
+								{{proficiencyFormatter(scope.row.proficiency_in_foreign_languages)}}
+							</template>
 						</el-table-column>
 
 						<el-table-column label="操作" width="150px">
 							<template #default="scope">
-								<el-button size="small" type="primary" :icon="Edit"
-									@click="handleEdit(scope.$index, scope.row)">编辑
+								<el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">编辑
 								</el-button>
-								<el-button size="small" type="danger" :icon="Delete"
-									@click="handleDelete(scope.$index, scope.row)">删除
+								<el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除
 								</el-button>
 							</template>
 						</el-table-column>
@@ -127,7 +128,6 @@
 
 <script>
 	export default {
-		inject: ['reload'],
 		name: "ForeignLanSearchView",
 		created() {
 			this.search();
@@ -146,12 +146,6 @@
 			}
 		},
 		methods: {
-			reload() {
-				this.isRouterAlive = false;
-				this.$nextTick(function() {
-					this.isRouterAlive = true;
-				})
-			},
 			handleCurrentChange(val) {
 				this.cur_page = val;
 				this.getData();
@@ -173,6 +167,30 @@
 			},
 			filterTag(value, row) {
 				return row.tag === value;
+			},
+			proficiencyFormatter(proficiency) {
+				switch (proficiency) {
+					case 0:
+						return "完全不懂";
+						break;
+					case 1:
+						return "少量，不能进行业务沟通";
+						break;
+					case 2:
+						return "有限的业务沟通";
+						break;
+					case 3:
+						return "一般，业务沟通仍受少量限制";
+						break;
+					case 4:
+						return "好， 无困难地进行谈判和讲演";
+						break;
+					case 5:
+						return "流利，在商务中自如地运用";
+						break;
+					default:
+						return "其他";
+				}
 			},
 			handleEdit(index, row) {
 				this.$message('编辑第' + (index + 1) + '行');
