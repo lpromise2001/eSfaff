@@ -130,6 +130,9 @@
 			},
 			handleEdit(index, row) {
 				this.$message('编辑第' + (index + 1) + '行');
+				let str = JSON.stringify(this.CareerInfos[index]);
+				sessionStorage.setItem("CareerInfo", str);
+				this.$router.push("/CareerInfoUpdate");
 			},
 			handleDelete(index, row) {
 				this.$message.error('删除第' + (index + 1) + '行');
