@@ -2,9 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.web01.mapper.StaffInformation.CareerInformationMapper">
     <insert id="infoAdd" parameterType="com.example.web01.dto.StaffInformation.CareerInformationDto">
-        insert into tbl_staff_career_information(staff_no, start_time, end_time, company_name, job_description, p_name, monthly_salary, notes)
-        values (#{staff_no}, #{start_time}, #{end_time}, #{company_name}, #{job_description}, #{p_name}, #{monthly_salary}, #{notes})
+        insert into tbl_staff_career_information(staff_no, start_time, end_time, company_name, job_description, p_name,
+                                                 monthly_salary, notes)
+        values (#{staff_no}, #{start_time}, #{end_time}, #{company_name}, #{job_description}, #{p_name},
+                #{monthly_salary}, #{notes})
     </insert>
+
+    <delete id="infoDel" parameterType="com.example.web01.dto.StaffInformation.CareerInformationDto">
+        delete
+        from tbl_staff_career_information
+        <where>
+            <if test="staff_no != null and staff_no != ''">
+                and staff_no = #{staff_no}
+            </if>
+        </where>
+    </delete>
+
     <select id="findByParam" resultType="com.example.web01.po.StaffInformation.CareerInformation"
             parameterType="com.example.web01.dto.StaffInformation.CareerInformationDto">
         select *

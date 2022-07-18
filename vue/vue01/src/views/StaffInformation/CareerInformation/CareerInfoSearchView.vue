@@ -9,7 +9,7 @@
 				<router-link to="" @click.native="doExit()">注销</router-link> -->
 			</div>
 		</div>
-		<el-main id="center">
+		<div id="center">
 			<div id="search_content">
 				<el-form label-width="100px" size="large">
 					<el-form-item label="员工编号:">
@@ -27,9 +27,9 @@
 				</el-form>
 			</div>
 			<div id="search_result">
-				<el-table :data="CareerInfos" :border="true" :stripe="true" style="width: 100%" ref="multipleTable"
-					:default-sort="{ prop: 'staff_no', order: '' }">
-					<el-table-column type="selection" width="55" />
+				<el-table :data="CareerInfos" border stripe style="width: 100%" ref="multipleTable"
+					:default-sort="{ prop: 'staff_no', order: '' }" @selection-change="handleSelectionChange">
+					<el-table-column type="selection" width="55" v-if="true" />
 					<el-table-column label="员工编号" sortable prop="staff_no"></el-table-column>
 					<el-table-column label="起始年月" sortable prop="start_time"></el-table-column>
 					<el-table-column label="截止年月" sortable prop="end_time"></el-table-column>
@@ -38,19 +38,44 @@
 					<el-table-column label="担任职务" prop="p_name"></el-table-column>
 					<el-table-column label="月薪" sortable prop="monthly_salary"></el-table-column>
 					<el-table-column label="备注" prop="notes"></el-table-column>
+					<el-table-column label="操作" width="180px">
+						<template #default="scope">
+							<el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑
+							</el-button>
+							<el-button size="small" @click="handleDelete(scope.$index, scope.row)">删除
+							</el-button>
+						</template>
+					</el-table-column>
 				</el-table>
-				<el-pagination small background layout="prev, pager, next" :total="50" class="mt-4" />
+				<el-button size="primary" type="primary" @click="toggleSelection()">清除选中</el-button>
+				<el-button type="primary" icon="delete" class="handle-del mr10" @click="delAll()">批量删除</el-button>
+				<div class="pagination">
+					<el-pagination @current-change="handleCurrentChange" layout="prev, pager, next" :total="100">
+					</el-pagination>
+				</div>
+				<!-- <el-pagination small background layout="prev, pager, next" :total="50" class="mt-4" /> -->
 			</div>
-		</el-main>
-		<el-footer id="bottom">
+		</div>
+		<div id="bottom">
 			版权归东软教育所有
-		</el-footer>
+		</div>
 	</div>
 </template>
 
 <script>
 	export default {
 		name: "CareerInfoSearchView",
+		props: {
+			checkbox: {
+				type: Boolean,
+				default: false
+			},
+			selectRow: {
+				//父组件传递过来的要选中的行的id
+				type: Array,
+				default: null
+			}
+		},
 		data() {
 			return {
 				CareerInfo: {
@@ -64,24 +89,16 @@
 					notes: ''
 				},
 				CareerInfos: [],
+				delCareerInfos: [],
 				multipleSelection: [],
-				multipleTableRef: []
+				cur_page: 1,
+				del_list: [],
 			}
 		},
 		methods: {
-			search() {
-				let str = JSON.stringify(this.CareerInfo)
-				console.log(str)
-				this.$axios.post("http://localhost:8088/eStaff/CareerInfo/findByParam", this.CareerInfo)
-					.then(rst => {
-						console.log(rst.data);
-						this.CareerInfos = rst.data.result;
-					}).catch(err => {
-						console.log(err);
-					})
-			},
-			handleSelectionChange(val) {
-				this.multipleSelection.value = val;
+			handleCurrentChange(val) {
+				this.cur_page = val;
+				this.getData();
 			},
 			toggleSelection(rows) {
 				if (rows) {
@@ -94,7 +111,86 @@
 				} else {
 					this.$refs.multipleTable.clearSelection();
 				}
-			}
+			},
+			// delArray() {
+			// 	const length = this.multipleSelection.length;
+			// 	//将每条数据中的id存到ids数组中
+			// 	for (let i = 0; i < length; i++) {
+			// 		// console.log(this.multipleSelection[i]);
+			// 		this.ids.push(this.multipleSelection[i].id);
+			// 		console.log(this.ids[i]);
+			// 	}
+			// 	this.$axios.post("http://localhost:8088/eStaff/CareerInfo/infoDel", this.delCareerInfos)
+			// 		.then(rst => {
+			// 			if (rst.data.code == 200) {
+			// 				// this.$message("操作结束");
+			// 				this.$alert("操作成功", "成功");
+			// 			} else {
+			// 				this.$alert("操作失败", "失败");
+			// 			}
+			// 			console.log(rst.data);
+			// 		}).catch(err => {
+			// 			console.log(err);
+			// 		})
+			// },
+			formatter(row, column) {
+				return row.address;
+			},
+			filterTag(value, row) {
+				return row.tag === value;
+			},
+			handleEdit(index, row) {
+				this.$message('编辑第' + (index + 1) + '行');
+			},
+			handleDelete(index, row) {
+				this.$message.error('删除第' + (index + 1) + '行');
+			},
+			delAll() {
+				const self = this,
+					length = self.multipleSelection.length;
+				let str = '';
+				self.del_list = self.del_list.concat(self.multipleSelection);
+				
+				// console.log(self.del_list);
+				for (let i = 0; i < length; i++) {
+					str += self.multipleSelection[i] + ' ';
+				}
+				str = JSON.stringify(self.multipleSelection);
+				console.log(str);
+				
+				this.$axios.post("http://localhost:8088/eStaff/CareerInfo/infoDel", self.del_list)
+					.then(rst => {
+						if (rst.data.code == 200) {
+							// this.$message("操作结束");
+							this.$alert("操作成功", "成功");
+						} else {
+							this.$alert("操作失败", "失败");
+						}
+						console.log(rst.data);
+					}).catch(err => {
+						console.log(err);
+					})
+				self.$message.error('删除了' + str);
+				
+				// 重置选中内容
+				self.multipleSelection = [];
+				self.del_list = [];
+			},
+			handleSelectionChange(val) {
+				this.multipleSelection = val;
+				console.log(this.multipleSelection);
+			},
+			search() {
+				let str = JSON.stringify(this.CareerInfo)
+				console.log(str)
+				this.$axios.post("http://localhost:8088/eStaff/CareerInfo/findByParam", this.CareerInfo)
+					.then(rst => {
+						console.log(rst.data);
+						this.CareerInfos = rst.data.result;
+					}).catch(err => {
+						console.log(err);
+					})
+			},
 		}
 	}
 </script>

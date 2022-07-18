@@ -31,4 +31,17 @@ public class CareerInformationService {
         }
         return result;
     }
+
+    public CommonResult infoDel(CareerInformationDto[] dtos) {
+        CommonResult result = new CommonResult();
+        int row = 0;
+        for (CareerInformationDto dto : dtos) {
+            row = mapper.infoDel(dto);
+        }
+        if (row == 0) {
+            result.setCode(100);
+            result.setMsg("失败");
+        }
+        return result;
+    }
 }
