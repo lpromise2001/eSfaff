@@ -4,6 +4,7 @@ import users from './user'
 import departments from './department'
 import cases from './case'
 import CareerInfosRouter from './StaffInformation'
+import forms from './form'
 
 const routes = [
  {
@@ -13,7 +14,8 @@ const routes = [
   ...users,
   ...departments,
   ...cases,
-  ...CareerInfosRouter
+  ...CareerInfosRouter,
+  ...forms
 ]
 
 const router = createRouter({

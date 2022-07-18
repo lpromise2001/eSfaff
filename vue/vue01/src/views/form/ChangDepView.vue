@@ -54,7 +54,7 @@
 				<el-form label-width="100px" size="large">
 					<el-form-item>
 						<el-button type="primary">查询</el-button>
-						<el-button type="primary">添加</el-button>
+						<el-button type="primary" @click="doAdd()">添加</el-button>
 					</el-form-item>
 				</el-form>
 			</div>
@@ -79,6 +79,11 @@
 					dep_chang_date_start:'',
 					dep_chang_date_end:''
 				}
+			}
+		},
+		methods:{
+			doAdd(){
+				this.$router.push("/ChangDepAdd");
 			}
 		}
 	}
