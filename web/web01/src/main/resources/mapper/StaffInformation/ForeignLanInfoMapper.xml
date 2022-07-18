@@ -5,5 +5,16 @@
     <select id="findByStaffNo" resultType="com.example.web01.po.StaffInformation.ForeignLanInfo"
             parameterType="com.example.web01.dto.StaffInformation.ForeignLanInfoDto">
         select * from tbl_staff_foreign_language_aptitude
+        <where>
+            <if test="staff_no != null and staff_no != ''">
+                and staff_no like concat('%', #{staff_no}, '%')
+            </if>
+            <if test="foreign_languages != null and foreign_languages != ''">
+                and foreign_languages = #{foreign_languages}
+            </if>
+            <if test="proficiency_in_foreign_languages != null and proficiency_in_foreign_languages != '' or proficiency_in_foreign_languages == 0">
+                and proficiency_in_foreign_languages = #{proficiency_in_foreign_languages}
+            </if>
+        </where>
     </select>
 </mapper>
