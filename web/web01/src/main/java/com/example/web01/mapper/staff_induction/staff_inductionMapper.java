@@ -9,4 +9,6 @@ import java.util.List;
 @Mapper
 public interface staff_inductionMapper {
     int save(staff_inductionDto dto);
+    List<staff_induction> search1(staff_inductionDto dto);
+    List<staff_induction> search2(staff_inductionDto dto);
 }
