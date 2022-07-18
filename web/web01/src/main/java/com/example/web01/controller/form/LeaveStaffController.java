@@ -20,4 +20,8 @@ public class LeaveStaffController {
     public CommonResult findByParam(@RequestBody LeaveStaffDto dto) {
         return leaveStaffService.findByParam(dto);
     }
+    @RequestMapping("/doAdd")
+    public CommonResult doAdd(@RequestBody LeaveStaffDto dto){
+        return leaveStaffService.doAdd(dto);
+    }
 }

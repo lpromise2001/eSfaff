@@ -20,4 +20,8 @@ public class NewStaffController {
     public CommonResult findByParam(@RequestBody NewStaffDto dto){
         return newStaffService.findByParam(dto);
     }
+    @RequestMapping("/add")
+    public CommonResult doAdd(@RequestBody NewStaffDto dto){
+        return newStaffService.doAdd(dto);
+    }
 }
