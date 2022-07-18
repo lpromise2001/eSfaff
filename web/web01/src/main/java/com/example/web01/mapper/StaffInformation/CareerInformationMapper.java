@@ -9,5 +9,5 @@ import java.util.List;
 @Mapper
 public interface CareerInformationMapper {
     List<CareerInformation> findByParam(CareerInformationDto dto);
-    int InfoAdd(CareerInformationDto dto);
+    int infoAdd(CareerInformationDto dto);
 }

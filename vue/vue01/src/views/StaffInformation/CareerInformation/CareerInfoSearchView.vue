@@ -9,7 +9,7 @@
 				<router-link to="" @click.native="doExit()">注销</router-link> -->
 			</div>
 		</div>
-		<div id="center">
+		<el-main id="center">
 			<div id="search_content">
 				<el-form label-width="100px" size="large">
 					<el-form-item label="员工编号:">
@@ -41,10 +41,10 @@
 				</el-table>
 				<el-pagination small background layout="prev, pager, next" :total="50" class="mt-4" />
 			</div>
-		</div>
-		<div id="bottom">
+		</el-main>
+		<el-footer id="bottom">
 			版权归东软教育所有
-		</div>
+		</el-footer>
 	</div>
 </template>
 

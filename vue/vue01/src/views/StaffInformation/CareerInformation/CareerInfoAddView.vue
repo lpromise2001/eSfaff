@@ -43,7 +43,7 @@
 					<el-input-number :precision="2" :step="0.1" v-model="CareerInfo.monthly_salary"></el-input-number>
 				</el-form-item>
 				<el-form-item label="备注:">
-					<el-input v-model="CareerInfo.notes" placeholder="可忽略"></el-input>
+					<el-input v-model="CareerInfo.notes"></el-input>
 				</el-form-item>
 				<el-form-item>
 					<el-button type="primary" @click="add()">添加</el-button>
@@ -69,28 +69,28 @@
 					job_description: '',
 					p_name: '',
 					monthly_salary: 0,
-					notes: ''
+					notes: '无'
 				},
 				CareerInfos: []
 			}
 		},
 		methods: {
 			add() {
-				// //获取页面中控件的值
-				// let str = JSON.stringify(this.book);
-				// console.log(str)
-				// this.$axios.post("http://localhost:9001/consumer/book/addBook", this.book)
-				// 	.then(rst => {
-				// 		if (rst.data.code == 200) {
-				// 			// this.$message("操作结束");
-				// 			this.$alert("操作成功", "成功");
-				// 		} else {
-				// 			this.$alert("操作失败", "失败");
-				// 		}
-				// 		console.log(rst.data);
-				// 	}).catch(err => {
-				// 		console.log(err);
-				// 	})
+				//获取页面中控件的值
+				let str = JSON.stringify(this.book);
+				console.log(str)
+				this.$axios.post("http://localhost:8088/eStaff/CareerInfo/infoAdd", this.CareerInfo)
+					.then(rst => {
+						if (rst.data.code == 200) {
+							// this.$message("操作结束");
+							this.$alert("操作成功", "成功");
+						} else {
+							this.$alert("操作失败", "失败");
+						}
+						console.log(rst.data);
+					}).catch(err => {
+						console.log(err);
+					})
 			}
 		}
 	}

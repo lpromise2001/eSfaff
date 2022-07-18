@@ -21,4 +21,14 @@ public class CareerInformationService {
         result.setResult(careerInformations);
         return result;
     }
+
+    public CommonResult infoAdd(CareerInformationDto dto) {
+        CommonResult result = new CommonResult();
+        int row = mapper.infoAdd(dto);
+        if (row == 0) {
+            result.setCode(100);
+            result.setMsg("失败");
+        }
+        return result;
+    }
 }

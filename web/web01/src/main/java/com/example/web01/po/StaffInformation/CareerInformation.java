@@ -12,6 +12,6 @@ public class CareerInformation {
     private String company_name;
     private String job_description;
     private String p_name;
-    private Integer monthly_salary;
+    private Double monthly_salary;
     private String notes;
 }

@@ -21,4 +21,9 @@ public class CareerInformationController {
     public CommonResult findByParam(@RequestBody CareerInformationDto dto) {
         return service.findByParam(dto);
     }
+
+    @RequestMapping("/infoAdd")
+    public CommonResult infoAdd(@RequestBody CareerInformationDto dto) {
+        return service.infoAdd(dto);
+    }
 }
