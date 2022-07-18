@@ -23,7 +23,7 @@
 		<el-container direction="horizontal">
 			<el-main>
 				<el-row :gutter="20">
-					<el-col :span="22" :offset="2">
+					<el-col :span="16" :offset="4">
 						<el-form label-width="100px" size="large" label-position='left' :inline="true">
 							<el-form-item width="200px">
 								<el-input placeholder="支持模糊查询" v-model="foreignLanInfo.staff_no">
@@ -36,7 +36,13 @@
 								</el-input>
 							</el-form-item>
 
-							<el-form-item label="语言">
+							<el-form-item>
+								<span>
+									<el-icon>
+										<ChatLineSquare />
+									</el-icon>
+									语言&nbsp;
+								</span>
 								<el-select v-model="foreignLanInfo.foreign_languages">
 									<el-option label="英语" value="英语"></el-option>
 									<el-option label="法语" value="法语"></el-option>
@@ -45,8 +51,15 @@
 								</el-select>
 							</el-form-item>
 
-							<el-form-item label="熟练程度">
-								<el-select v-model="foreignLanInfo.foreign_languages">
+							<el-form-item>
+								<span>
+									<el-icon>
+										<Flag />
+									</el-icon>
+									熟练程度&nbsp;
+								</span>
+								<el-select v-model="foreignLanInfo.proficiency_in_foreign_languages">
+									<el-option label="不选择" value=""></el-option>
 									<el-option label="完全不懂" value="0"></el-option>
 									<el-option label="少量，不能进行业务沟通" value="1"></el-option>
 									<el-option label="有限的业务沟通" value="2"></el-option>
@@ -63,40 +76,47 @@
 					</el-col>
 				</el-row>
 
-				<div id="search_result" v-if="isRouterAlive" style="padding: 10px;">
-					<el-table :data="foreignLanInfos" border stripe style="width: 100%" ref="multipleTable"
-						:default-sort="{ prop: 'staff_no', order: '' }" @selection-change="handleSelectionChange"
-						size="large">
-						<el-table-column type="selection" width="55" v-if="true" />
-						<el-table-column label="员工编号" sortable prop="staff_no" width="120">
-							<template #default="scope">
-								<div style="display: flex; align-items: center">
-									<el-icon>
-										<User />
-									</el-icon>
-									<span style="margin-left: 10px">{{ scope.row.staff_no }}</span>
-								</div>
-							</template>
-						</el-table-column>
+				<el-row gutter="20">
+					<el-col :span="12" :offset="6">
+						<div id="search_result" v-if="isRouterAlive" style="padding: 10px;">
+							<el-table :data="foreignLanInfos" border stripe style="width: auto" ref="multipleTable"
+								:default-sort="{ prop: 'staff_no', order: '' }"
+								@selection-change="handleSelectionChange" size="large">
+								<el-table-column type="selection" width="55" v-if="true" />
+								<el-table-column label="员工编号" sortable prop="staff_no" width="120">
+									<template #default="scope">
+										<div style="display: flex; align-items: center">
+											<el-icon>
+												<User />
+											</el-icon>
+											<span style="margin-left: 10px">{{ scope.row.staff_no }}</span>
+										</div>
+									</template>
+								</el-table-column>
 
-						<el-table-column label="外国语种" prop="foreign_languages" width="100"></el-table-column>
+								<el-table-column label="外国语种" prop="foreign_languages" width="100"></el-table-column>
 
-						<el-table-column label="熟练程度" width="200">
-							<template #default="scope">
-								{{proficiencyFormatter(scope.row.proficiency_in_foreign_languages)}}
-							</template>
-						</el-table-column>
+								<el-table-column label="熟练程度" width="auto">
+									<template #default="scope">
+										{{proficiencyFormatter(scope.row.proficiency_in_foreign_languages)}}
+									</template>
+								</el-table-column>
 
-						<el-table-column label="操作" width="150px">
-							<template #default="scope">
-								<el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">编辑
-								</el-button>
-								<el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除
-								</el-button>
-							</template>
-						</el-table-column>
-					</el-table>
-				</div>
+								<el-table-column label="操作" width="150">
+									<template #default="scope">
+										<el-button size="small" type="primary"
+											@click="handleEdit(scope.$index, scope.row)">编辑
+										</el-button>
+										<el-button size="small" type="danger"
+											@click="handleDelete(scope.$index, scope.row)">删除
+										</el-button>
+									</template>
+								</el-table-column>
+							</el-table>
+						</div>
+					</el-col>
+				</el-row>
+
 			</el-main>
 		</el-container>
 
@@ -111,7 +131,7 @@
 
 			<div class="pagination">
 				<el-row :gutter="20">
-					<el-col :span="4" :offset="10">
+					<el-col :offset="9">
 						<el-pagination @current-change="handleCurrentChange" layout="prev, pager, next" :total="100"
 							background class="mt-4">
 						</el-pagination>
@@ -137,7 +157,7 @@
 				foreignLanInfo: {
 					staff_no: '',
 					foreign_languages: '',
-					proficiency_in_foreign_languages: 0,
+					proficiency_in_foreign_languages: '',
 				},
 				foreignLanInfos: [],
 				isRouterAlive: true,
@@ -259,7 +279,7 @@
 			search() {
 				let str = JSON.stringify(this.foreignLanInfo)
 				console.log(str)
-				this.$axios.post("http://localhost:8088/eStaff/foreignLanInfo/findByParam", this.foreignLanInfo)
+				this.$axios.post("http://localhost:8088/eStaff/foreignLanInfo/findInfo", this.foreignLanInfo)
 					.then(rst => {
 						console.log(rst.data);
 						this.foreignLanInfos = rst.data.result;
