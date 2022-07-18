@@ -85,11 +85,9 @@
 						<el-table-column label="备注" prop="notes" width="100"></el-table-column>
 						<el-table-column label="操作" width="150px">
 							<template #default="scope">
-								<el-button size="small" type="primary"
-									@click="handleEdit(scope.$index, scope.row)">编辑
+								<el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">编辑
 								</el-button>
-								<el-button size="small" type="danger"
-									@click="handleDelete(scope.$index, scope.row)">删除
+								<el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除
 								</el-button>
 							</template>
 						</el-table-column>
