@@ -22,4 +22,9 @@ public class DepartmentController {
         return departmentService.findByParam(dto);
     }
 
+    @RequestMapping("/addDepartment")
+    public CommonResult addDepartment(@RequestBody DepartmentDto dto){
+        return departmentService.addDepartment(dto);
+    }
+
 }
