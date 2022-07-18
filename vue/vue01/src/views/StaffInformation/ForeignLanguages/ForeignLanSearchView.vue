@@ -64,7 +64,7 @@
 				</el-row>
 
 				<div id="search_result" v-if="isRouterAlive" style="padding: 10px;">
-					<el-table :data="foreignLanInfos" border stripe style="width: 100%" ref="multipleTable"
+					<el-table :data="foreignLanInfos" border stripe style="width: auto" ref="multipleTable"
 						:default-sort="{ prop: 'staff_no', order: '' }" @selection-change="handleSelectionChange"
 						size="large">
 						<el-table-column type="selection" width="55" v-if="true" />
@@ -259,7 +259,7 @@
 			search() {
 				let str = JSON.stringify(this.foreignLanInfo)
 				console.log(str)
-				this.$axios.post("http://localhost:8088/eStaff/foreignLanInfo/findByParam", this.foreignLanInfo)
+				this.$axios.post("http://localhost:8088/eStaff/foreignLanInfo/findInfo", this.foreignLanInfo)
 					.then(rst => {
 						console.log(rst.data);
 						this.foreignLanInfos = rst.data.result;
