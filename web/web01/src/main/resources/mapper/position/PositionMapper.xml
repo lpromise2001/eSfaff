@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.web01.mapper.position.PositionMapper">
+    <select id="findByPos"
+            resultType="com.example.web01.po.position.Position"
+            parameterType="com.example.web01.dto.position.PositionDto">
+        select * from tbl_position
+        <where>
+            <if test="p_no != null and p_no != ''">
+                and p_no =#{p_no}
+            </if>
+
+            <if test="p_name != null and p_name != ''">
+                and p_name  =#{p_name}
+            </if>
+
+            <if test="p_establishment != null and p_establishment != ''">
+                and p_establishment =#{p_establishment}
+            </if>
+        </where>
+    </select>
+</mapper>
+
+
+
+
