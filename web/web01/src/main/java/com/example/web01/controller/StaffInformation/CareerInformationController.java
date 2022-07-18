@@ -1,6 +1,6 @@
 package com.example.web01.controller.StaffInformation;
 
-import com.example.web01.dto.StaffInfomation.CareerInformationDto;
+import com.example.web01.dto.StaffInformation.CareerInformationDto;
 import com.example.web01.service.StaffInformation.CareerInformationService;
 import com.example.web01.util.CommonResult;
 import org.springframework.web.bind.annotation.CrossOrigin;

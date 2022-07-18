@@ -1,6 +1,6 @@
 package com.example.web01.service.StaffInformation;
 
-import com.example.web01.dto.StaffInfomation.CareerInformationDto;
+import com.example.web01.dto.StaffInformation.CareerInformationDto;
 import com.example.web01.mapper.StaffInformation.CareerInformationMapper;
 import com.example.web01.po.StaffInformation.CareerInformation;
 import com.example.web01.util.CommonResult;
@@ -15,6 +15,7 @@ public class CareerInformationService {
     private CareerInformationMapper mapper;
 
     public CommonResult findByParam(CareerInformationDto dto) {
+        System.out.println(dto.getStaff_no() + dto.getCompany_name() + dto.getP_name());
         CommonResult result = new CommonResult();
         List<CareerInformation> careerInformations = mapper.findByParam(dto);
         result.setResult(careerInformations);

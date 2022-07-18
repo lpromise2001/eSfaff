@@ -73,6 +73,8 @@
 		},
 		methods: {
 			search() {
+				let str = JSON.stringify(this.CareerInfo)
+				console.log(str)
 				this.$axios.post("http://localhost:8088/eStaff/CareerInfo/findByParam", this.CareerInfo)
 					.then(rst => {
 						console.log(rst.data);
