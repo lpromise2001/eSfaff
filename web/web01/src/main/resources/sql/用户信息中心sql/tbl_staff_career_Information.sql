@@ -34,6 +34,6 @@ CREATE TABLE `tbl_staff_career_information` (
 -- ----------------------------
 -- Records of tbl_staff_career_information
 -- ----------------------------
-INSERT INTO `tbl_staff_career_information` VALUES ('S001', '2019-06-05', '2022-07-16', '德州三和电器有限公司', '管理公司事务', '经理', '8000', null);
-INSERT INTO `tbl_staff_career_information` VALUES ('S002', '2022-04-13', '2022-07-12', '山东康博实业有限公司', '进行项目管理', '项目经理', '6500', null);
-INSERT INTO `tbl_staff_career_information` VALUES ('S003', '2022-04-26', '2022-07-07', '德州市重点建设投资公司', null, '员工', '3000', null);
+INSERT INTO `tbl_staff_career_information` VALUES ('S001', '2019-06-05', '2022-07-16', '德州三和电器有限公司', '管理公司事务', '经理', '8000', '无');
+INSERT INTO `tbl_staff_career_information` VALUES ('S002', '2022-04-13', '2022-07-12', '山东康博实业有限公司', '进行项目管理', '项目经理', '6500', '无');
+INSERT INTO `tbl_staff_career_information` VALUES ('S003', '2022-04-26', '2022-07-07', '德州市重点建设投资公司', '进行建设技术学习', '员工', '3000', '无');

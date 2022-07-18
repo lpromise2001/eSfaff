@@ -13,5 +13,5 @@ public class Department {
     private String dep_manager;
     private String dep_phone;
     private String dep_description;
-    private String dep_date;
+    private Date dep_date;
 }

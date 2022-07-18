@@ -11,4 +11,6 @@ import java.util.List;
 public interface DepartmentMapper {
 
     List<Department> findByParam(DepartmentDto dto);
+
+    int addDepartment(DepartmentDto dto);
 }
