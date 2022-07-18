@@ -1,5 +1,7 @@
 package com.example.web01.service.staff_induction;
 
+import com.example.web01.dto.StaffInformation.CareerInformationDto;
+import com.example.web01.po.StaffInformation.CareerInformation;
 import com.example.web01.po.staff_induction.staff_induction;
 import com.example.web01.dto.staff_induction.staff_inductionDto;
 import com.example.web01.mapper.staff_induction.staff_inductionMapper;
@@ -23,5 +25,34 @@ public class staff_inductionService {
         }
         return rst;
     }
+    public CommonResult search1(staff_inductionDto dto) {
+
+
+        CommonResult rst=new CommonResult();
+        List<staff_induction> staff_inductions=Staff_inductionMapper.search1(dto);
+        staff_inductions.clear();
+        System.out.println(staff_inductions.isEmpty());
+        staff_inductions=Staff_inductionMapper.search1(dto);
+        System.out.println(rst.toString());
+        rst.setResult(staff_inductions);
+        System.out.println(staff_inductions.isEmpty());
+        System.out.println(rst.toString());
+        return rst;
+    }
+    public CommonResult search2(staff_inductionDto dto) {
+
+
+        CommonResult rst=new CommonResult();
+        List<staff_induction> staff_inductions=Staff_inductionMapper.search1(dto);
+        staff_inductions.clear();
+        System.out.println(staff_inductions.isEmpty());
+        staff_inductions=Staff_inductionMapper.search1(dto);
+        System.out.println(rst.toString());
+        rst.setResult(staff_inductions);
+        System.out.println(staff_inductions.isEmpty());
+        System.out.println(rst.toString());
+        return rst;
+    }
+
 
 }

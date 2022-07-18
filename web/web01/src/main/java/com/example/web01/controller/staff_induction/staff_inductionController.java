@@ -22,4 +22,12 @@ public class staff_inductionController {
     public CommonResult reg(@RequestBody staff_inductionDto dto){
         return Staff_inductionService.doSave(dto);
     }
+    @RequestMapping("/search1")
+    public CommonResult search1(@RequestBody staff_inductionDto dto){
+        return Staff_inductionService.search1(dto);
+    }
+    @RequestMapping("/search2")
+    public CommonResult search2(@RequestBody staff_inductionDto dto){
+        return Staff_inductionService.search2(dto);
+    }
 }

@@ -5,4 +5,24 @@
         insert into tbl_staff_induction(p_name,staff_name,staff_no,staff_sex,staff_phone,staff_status,staff_department)
         values(#{p_name},(#{staff_name}),#{staff_no},#{staff_sex},#{staff_phone},#{staff_status},#{staff_department})
     </insert>
+    <select id="search1" parameterType="com.example.web01.dto.staff_induction.staff_inductionDto"
+            resultType="com.example.web01.po.staff_induction.staff_induction">
+        select * from tbl_staff_induction
+        <where>
+
+            <if test="staff_status != null and staff_status != ''">
+                and staff_status =#{staff_status}
+            </if>
+        </where>
+    </select>
+    <select id="search2" parameterType="com.example.web01.dto.staff_induction.staff_inductionDto"
+            resultType="com.example.web01.po.staff_induction.staff_induction">
+        select * from tbl_staff_induction
+        <where>
+
+            <if test="staff_status != null and staff_status != ''">
+                and staff_status =#{staff_status}
+            </if>
+        </where>
+    </select>
 </mapper>

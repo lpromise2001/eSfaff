@@ -7,6 +7,7 @@ import LeaveStaffView from '../../views/form/LeaveStaffView.vue'
 import ChangDepView from '../../views/form/ChangDepView.vue'
 import ChangPosView from '../../views/form/ChangPosView.vue'
 import UserChangeView from '../../views/induction/UserChangeView.vue'
+import StatusSearch from '../../views/induction/StatusSearch.vue'
 const users=[
 	
 	{
@@ -53,6 +54,11 @@ const users=[
 				path:'/UserChange',
 				name:'UserChange',
 				component:UserChangeView
+			},
+			{
+				path:'/StatusSearch',
+				name:'StatusSearch',
+				component:StatusSearch
 			}
 		]
 	}
