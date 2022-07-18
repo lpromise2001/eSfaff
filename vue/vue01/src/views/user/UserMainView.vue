@@ -21,7 +21,7 @@
 							<span>用户信息维护</span>
 						</template>
 						<el-menu-item index="/userReg">员工入职</el-menu-item>
-						<el-menu-item index="/UserChange">员工异动</el-menu-item>
+						<el-menu-item index="/UserChange">人事调动</el-menu-item>
 						<el-menu-item index="/StatusSearch">员工状态查询</el-menu-item>
 					</el-sub-menu>
 					<el-sub-menu index="2">

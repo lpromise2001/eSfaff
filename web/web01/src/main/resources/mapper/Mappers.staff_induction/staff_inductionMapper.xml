@@ -15,6 +15,10 @@
             </if>
         </where>
     </select>
+    <select id="find" parameterType="com.example.web01.dto.staff_induction.staff_inductionDto"
+            resultType="com.example.web01.po.staff_induction.staff_induction">
+        select * from tbl_staff_induction
+    </select>
     <select id="search2" parameterType="com.example.web01.dto.staff_induction.staff_inductionDto"
             resultType="com.example.web01.po.staff_induction.staff_induction">
         select * from tbl_staff_induction
@@ -33,5 +37,34 @@
                 and staff_no = #{staff_no}
             </if>
         </where>
+    </update>
+    <update id="change" parameterType="com.example.web01.dto.staff_induction.staff_inductionDto">
+        <if test="p_name != null and p_name != '' and staff_department != null and staff_department != ''">
+        update tbl_staff_induction
+        set staff_status=staff_status,p_name=#{p_name},staff_department=#{staff_department},staff_name=staff_name,staff_sex=staff_sex,staff_no=staff_no
+        <where>
+            <if test="staff_no != null and staff_no != ''">
+                and staff_no = #{staff_no}
+            </if>
+        </where>
+        </if>
+        <if test="p_name == null or p_name == '' ">
+        update tbl_staff_induction
+            set staff_status=staff_status,p_name=p_name,staff_department=#{staff_department},staff_name=staff_name,staff_sex=staff_sex,staff_no=staff_no
+            <where>
+                <if test="staff_no != null and staff_no != ''">
+                    and staff_no = #{staff_no}
+                </if>
+            </where>
+        </if>
+        <if test="staff_department == null or staff_department == '' ">
+        update tbl_staff_induction
+            set staff_status=staff_status,p_name=#{p_name},staff_department=staff_department,staff_name=staff_name,staff_sex=staff_sex,staff_no=staff_no
+            <where>
+                <if test="staff_no != null and staff_no != ''">
+                    and staff_no = #{staff_no}
+                </if>
+            </where>
+        </if>
     </update>
 </mapper>

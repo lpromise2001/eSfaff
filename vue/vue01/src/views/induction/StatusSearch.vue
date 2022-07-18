@@ -1,17 +1,19 @@
 <template>
 	<div id="container">
-		<el-form-item>
-		<el-button type="primary" size='large' @click="search1()">实习员工查询</el-button>
-	</el-form-item>
-	<el-form-item>
-		<el-button type="primary" size='large' @click="search2()">正式员工查询</el-button>
-	</el-form-item>
+	<!--<el-button type="primary" size='large' @click="search1()">实习员工查询</el-button>
+	<el-button type="primary" size='large' @click="search2()">正式员工查询</el-button>!-->
 	<el-form-item label="员工转正:">
 		<el-input placeholder="输入要转正员工的员工号" v-model="staff3.staff_no"></el-input>
 	</el-form-item>
+	
 	<el-form-item>
-		<el-button type="primary" size='large' @click="search3()">员工转正</el-button>
+	-----------------------------------------------------------------------
+	<el-button type="primary" size='large' @click="search3()">员工转正</el-button>
+	<el-button type="primary" size='large' @click="search1()">实习员工查询</el-button>
+	<el-button type="primary" size='large' @click="search2()">正式员工查询</el-button>
+	-----------------------------------------------------------------------
 	</el-form-item>
+
 	<div id="search_result">
 		<el-table
 			:data="staffs"
@@ -68,7 +70,7 @@
 			search1(){
 				this.$axios.post("http://localhost:8088/eStaff/user/search1",this.staff1)
 				.then(rst=>{
-					//console.log(rst.data)
+					console.log(rst.data)
 					this.staffs=rst.data.result;
 				}).catch(err=>{
 					console.log(err)
@@ -102,5 +104,60 @@
 	}
 </script>
 
-<style>
+<style scoped>
+	#container{
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+	#top{
+		width: 100%;
+		height: 80px;
+		border-bottom: 1px solid darkgray;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0px 20px;
+		box-sizing: border-box;
+	}
+	#top #logo{
+		font-size: 50px;
+		font-family: 楷体;
+		text-shadow: 5px 5px 5px gray;
+		font-style: italic;
+		font-weight: bolder;
+	}
+	#top #info{
+		font-size: 12px;
+	}
+	#top a{
+		text-decoration: none;
+	}
+	#bottom{
+		width: 100%;
+		height: 30px;
+		font-size: 12px;
+		border-top: 1px solid darkgray;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	#center{
+		width: 100%;
+		flex: 1;/*占父容器剩下容量的一份*/
+		display: flex;
+	}
+	#center #leftMenu{
+		width: 200px;
+		height: 100%;
+		border-right: 1px solid darkgray;
+	}
+		
+	#center #rightViews{
+		height: 100%;
+		flex: 1;
+		padding: 20px;
+		box-sizing: border-box;
+	}
 </style>

@@ -34,7 +34,7 @@
 				staff:{
 					p_name:'',
 					staff_name:'',
-					staff_no:'1',
+					staff_no:'',
 					staff_sex:'',
 					staff_phone:'',
 					staff_status:'实习',

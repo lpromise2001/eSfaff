@@ -34,4 +34,12 @@ public class staff_inductionController {
     public CommonResult search3(@RequestBody staff_inductionDto dto){
         return Staff_inductionService.search3(dto);
     }
+    @RequestMapping("/change")
+    public CommonResult change(@RequestBody staff_inductionDto dto){
+        return Staff_inductionService.change(dto);
+    }
+    @RequestMapping("/find")
+    public CommonResult find(@RequestBody staff_inductionDto dto){
+        return Staff_inductionService.find(dto);
+    }
 }

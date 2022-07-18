@@ -34,6 +34,15 @@ public class staff_inductionService {
         }
         return rst;
     }
+    public CommonResult change(staff_inductionDto dto){
+        CommonResult rst=new CommonResult();
+        int row=Staff_inductionMapper.change(dto);
+        if(row==0){
+            rst.setCode(100);
+            rst.setMsg("失败");
+        }
+        return rst;
+    }
     public CommonResult search1(staff_inductionDto dto) {
 
 
@@ -42,6 +51,20 @@ public class staff_inductionService {
         staff_inductions.clear();
         System.out.println(staff_inductions.isEmpty());
         staff_inductions=Staff_inductionMapper.search1(dto);
+        System.out.println(rst.toString());
+        rst.setResult(staff_inductions);
+        System.out.println(staff_inductions.isEmpty());
+        System.out.println(rst.toString());
+        return rst;
+    }
+    public CommonResult find(staff_inductionDto dto) {
+
+
+        CommonResult rst=new CommonResult();
+        List<staff_induction> staff_inductions=Staff_inductionMapper.find(dto);
+        staff_inductions.clear();
+        System.out.println(staff_inductions.isEmpty());
+        staff_inductions=Staff_inductionMapper.find(dto);
         System.out.println(rst.toString());
         rst.setResult(staff_inductions);
         System.out.println(staff_inductions.isEmpty());
