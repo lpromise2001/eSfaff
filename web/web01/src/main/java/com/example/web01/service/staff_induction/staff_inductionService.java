@@ -25,6 +25,15 @@ public class staff_inductionService {
         }
         return rst;
     }
+    public CommonResult search3(staff_inductionDto dto){
+        CommonResult rst=new CommonResult();
+        int row=Staff_inductionMapper.search3(dto);
+        if(row==0){
+            rst.setCode(100);
+            rst.setMsg("失败");
+        }
+        return rst;
+    }
     public CommonResult search1(staff_inductionDto dto) {
 
 

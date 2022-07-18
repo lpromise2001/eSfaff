@@ -20,4 +20,8 @@ public class ChangPosController {
     public CommonResult findByParam(@RequestBody ChangPosDto dto){
         return changPosService.findByParam(dto);
     }
+    @RequestMapping("/doAdd")
+    public CommonResult doAdd(@RequestBody ChangPosDto dto){
+        return changPosService.doAdd(dto);
+    }
 }

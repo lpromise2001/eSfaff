@@ -38,20 +38,20 @@
 				
 				<el-form-item label="学历:">
 					<el-select placeholder="请选择" v-model="newstaffadd.staff_education">
-						<el-option label="小学" value="1"></el-option>
-						<el-option label="初中" value="2"></el-option>
-						<el-option label="高中" value="3"></el-option>
-						<el-option label="专科" value="4"></el-option>
-						<el-option label="本科" value="5"></el-option>
-						<el-option label="硕士研究生" value="6"></el-option>
-						<el-option label="博士研究生" value="7"></el-option>
+						<el-option label="小学" value="小学"></el-option>
+						<el-option label="初中" value="初中"></el-option>
+						<el-option label="高中" value="高中"></el-option>
+						<el-option label="专科" value="专科"></el-option>
+						<el-option label="本科" value="本科"></el-option>
+						<el-option label="硕士研究生" value="硕士研究生"></el-option>
+						<el-option label="博士研究生" value="博士研究生"></el-option>
 					</el-select>
 				</el-form-item>
 				
 				<el-form-item>
 					<div class="btn">
 						<el-button type="primary" @click="doBack()">返回</el-button>
-						<el-button type="primary">添加</el-button>
+						<el-button type="primary" @click="doAdd()">添加</el-button>
 					</div>
 						
 				</el-form-item>
@@ -78,6 +78,19 @@
 		methods:{
 			doBack(){
 				this.$router.push("/NewStaff");
+			},
+			doAdd(){
+				this.$axios.post("http://localhost:8088/eStaff/newStaff/add",this.newstaffadd)
+				.then(rst=>{
+					if(rst.data.code==200){
+						this.$alert("添加成功","提示");
+					}else{
+						this.$alert("添加失败","提示");
+					}
+					console.log(rst.data);
+				}).catch(err=>{
+					console.log(err);
+				})
 			}
 		}
 	}

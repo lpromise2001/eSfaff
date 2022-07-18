@@ -25,4 +25,13 @@
             </if>
         </where>
     </select>
+    <update id="search3" parameterType="com.example.web01.dto.staff_induction.staff_inductionDto">
+        update tbl_staff_induction
+        set staff_status=#{staff_status},p_name=p_name,staff_department=staff_department,staff_name=staff_name,staff_sex=staff_sex,staff_no=staff_no
+        <where>
+            <if test="staff_no != null and staff_no != ''">
+                and staff_no = #{staff_no}
+            </if>
+        </where>
+    </update>
 </mapper>
