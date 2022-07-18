@@ -10,7 +10,7 @@
 			</div>
 		</div>
 		<div id="center">
-			<el-form label-width="120px">
+			<el-form label-width="120px" label-position='left'>
 				<el-form-item label="员工编号">
 					<el-input placeholder="输入员工编号" v-model="CareerInfo.staff_no"></el-input>
 				</el-form-item>
