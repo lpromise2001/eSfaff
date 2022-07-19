@@ -1,24 +1,6 @@
 <template>
 	<div id="container">
-		<el-header height="auto">
-			<div id="top">
-				<div id="logo">
-					东软教育
-				</div>
-				<div id="info">
-					<!-- 				欢迎【{{user.userName}}】
-					<router-link to="" @click.native="doExit()">注销</router-link> -->
-				</div>
-			</div>
-			<div class="h-6">
-				<el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal"
-					background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" @select="handleSelect"
-					router>
-					<el-menu-item index="/">返回主页面</el-menu-item>
-					<el-menu-item index="/foreignLanAdd">添加员工外语能力信息</el-menu-item>
-				</el-menu>
-			</div>
-		</el-header>
+		<el-header height="auto"></el-header>
 
 		<el-container direction="horizontal">
 			<el-main>
@@ -139,9 +121,9 @@
 				</el-row>
 			</div>
 
-			<div id="bottom">
+			<!-- <div id="bottom">
 				版权归东软教育所有
-			</div>
+			</div> -->
 		</el-footer>
 	</div>
 </template>

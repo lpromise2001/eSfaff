@@ -7,39 +7,40 @@ import ForeignLanAddView from '../../views/StaffInformation/ForeignLanguages/For
 import ForeignLanUpdateView from '../../views/StaffInformation/ForeignLanguages/ForeignLanUpdateView.vue'
 
 const CareerInfosRouter = [{
-		path: '/StaffInfoMain',
-		name: 'StaffInfoMain',
-		component: StaffInfoMainView,
-		children: []
-	}, {
-		path: '/CareerInfoSearch',
-		name: 'CareerInfoSearch',
-		component: CareerInfoSearchView,
+	path: '/StaffInfoMain',
+	name: 'StaffInfoMain',
+	component: StaffInfoMainView,
+	children: [{
+			path: '/CareerInfoSearch',
+			name: 'CareerInfoSearch',
+			component: CareerInfoSearchView,
 
-	}, {
-		path: '/CareerInfoAdd',
-		name: 'CareerInfoAdd',
-		component: CareerInfoAddView
-	},
-	{
-		path: '/CareerInfoUpdate',
-		name: 'CareerInfoUpdate',
-		component: CareerInfoUpdateView
-	}, {
-		path: '/ForeignLanSearch',
-		name: 'ForeignLanSearch',
-		component: ForeignLanSearchView,
+		}, {
+			path: '/CareerInfoAdd',
+			name: 'CareerInfoAdd',
+			component: CareerInfoAddView
+		},
+		{
+			path: '/CareerInfoUpdate',
+			name: 'CareerInfoUpdate',
+			component: CareerInfoUpdateView
+		},
+		{
+			path: '/ForeignLanSearch',
+			name: 'ForeignLanSearch',
+			component: ForeignLanSearchView,
 
-	}, {
-		path: '/ForeignLanAdd',
-		name: 'ForeignLanAdd',
-		component: ForeignLanAddView
-	},
-	{
-		path: '/ForeignLanUpdate',
-		name: 'ForeignLanUpdate',
-		component: ForeignLanUpdateView
-	}
-]
+		}, {
+			path: '/ForeignLanAdd',
+			name: 'ForeignLanAdd',
+			component: ForeignLanAddView
+		},
+		{
+			path: '/ForeignLanUpdate',
+			name: 'ForeignLanUpdate',
+			component: ForeignLanUpdateView
+		}
+	]
+}]
 
 export default CareerInfosRouter;

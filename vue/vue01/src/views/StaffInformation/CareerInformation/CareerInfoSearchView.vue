@@ -1,29 +1,14 @@
 <template>
 	<div id="container">
-		<el-header height="auto" style="padding: 10px;">
-			<div id="top">
-				<div id="logo">
-					东软教育
-				</div>
-				<div id="info">
-					<!-- 				欢迎【{{user.userName}}】
-					<router-link to="" @click.native="doExit()">注销</router-link> -->
-				</div>
-			</div>
-			<div class="h-6">
-				<el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal"
-					background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" @select="handleSelect"
-					router>
-					<el-menu-item index="/">返回主页面</el-menu-item>
-					<el-menu-item index="/CareerInfoAdd">添加员工信息</el-menu-item>
-				</el-menu>
-			</div>
-		</el-header>
+		<el-header height="auto" style="padding: 10px;"> </el-header>
 
 		<el-container direction="horizontal">
 			<el-main>
 				<el-row :gutter="20">
-					<el-col :span="22" :offset="2">
+					<!-- <el-col :span="2">
+						<el-button link>添加员工信息</el-button>
+					</el-col> -->
+					<el-col :span="20" :offset="4">
 						<el-form label-width="100px" size="large" label-position='left' :inline="true">
 							<el-form-item width="200px">
 								<el-input placeholder="支持模糊查询" v-model="CareerInfo.staff_no">
@@ -116,9 +101,9 @@
 				</el-row>
 			</div>
 
-			<div id="bottom">
+			<!-- <div id="bottom">
 				版权归东软教育所有
-			</div>
+			</div> -->
 		</el-footer>
 	</div>
 </template>
@@ -196,7 +181,7 @@
 					})
 
 				this.del_list = [];
-				
+
 				// 刷新搜索框
 				this.search()
 			},

@@ -1,14 +1,5 @@
 <template>
 	<div id="container">
-		<div id="top">
-			<div id="logo">
-				东软教育
-			</div>
-			<div id="info">
-				<!-- 				欢迎【{{user.userName}}】
-				<router-link to="" @click.native="doExit()">注销</router-link> -->
-			</div>
-		</div>
 		<div id="center">
 			<el-form label-width="120px">
 				<el-form-item label="员工编号">
@@ -50,9 +41,9 @@
 				</el-form-item>
 			</el-form>
 		</div>
-		<div id="bottom">
+		<!-- <div id="bottom">
 			版权归东软教育所有
-		</div>
+		</div> -->
 	</div>
 </template>
 

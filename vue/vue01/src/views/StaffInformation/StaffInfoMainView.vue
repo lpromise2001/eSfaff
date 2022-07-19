@@ -29,20 +29,20 @@
 								<el-icon>
 									<User />
 								</el-icon>
-								<span>用户信息维护</span>
+								<span>员工职业经历</span>
 							</template>
-							<el-menu-item index="/userReg">员工入职</el-menu-item>
-							<el-menu-item index="/UserChange">员工异动</el-menu-item>
+							<el-menu-item index="/CareerInfoSearch">职业经历信息列表</el-menu-item>
+							<el-menu-item index="/CareerInfoAdd">职业经历信息添加</el-menu-item>
 						</el-sub-menu>
 						<el-sub-menu index="2">
 							<template #title>
 								<el-icon>
 									<Goods />
 								</el-icon>
-								<span>商品维护</span>
+								<span>员工外语能力</span>
 							</template>
-							<el-menu-item index="/">添加商品</el-menu-item>
-							<el-menu-item index="/about">查询商品</el-menu-item>
+							<el-menu-item index="/ForeignLanSearch">员工外语能力列表</el-menu-item>
+							<el-menu-item index="/ForeignLanAdd">增加员工信息</el-menu-item>
 						</el-sub-menu>
 						<el-sub-menu index="3">
 							<template #title>
