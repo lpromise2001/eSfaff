@@ -1,8 +1,8 @@
 package com.example.web01.service.StaffInformation;
 
-import com.example.web01.dto.StaffInformation.ForeignLanInfoDto;
-import com.example.web01.mapper.StaffInformation.ForeignLanInfoMapper;
-import com.example.web01.po.StaffInformation.ForeignLanInfo;
+import com.example.web01.dto.StaffInformation.SocialRelationshipInfoDto;
+import com.example.web01.mapper.StaffInformation.SocialRelationshipInfoMapper;
+import com.example.web01.po.StaffInformation.SocialRelationshipInfo;
 import com.example.web01.util.CommonResult;
 import org.springframework.stereotype.Service;
 
@@ -10,18 +10,18 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class ForeignLanInfoService {
+public class SocialRelationshipInfoService {
     @Resource
-    private ForeignLanInfoMapper mapper;
+    private SocialRelationshipInfoMapper mapper;
 
-    public CommonResult infoSelect(ForeignLanInfoDto dto) {
+    public CommonResult infoSelect(SocialRelationshipInfoDto dto) {
         CommonResult result = new CommonResult();
-        List<ForeignLanInfo> infos = mapper.findByStaffNo(dto);
+        List<SocialRelationshipInfo> infos = mapper.infoSelect(dto);
         result.setResult(infos);
         return result;
     }
 
-    public CommonResult infoAdd(ForeignLanInfoDto dto) {
+    public CommonResult infoAdd(SocialRelationshipInfoDto dto) {
         CommonResult result = new CommonResult();
         int row = mapper.infoAdd(dto);
         if (row == 0) {
@@ -31,10 +31,10 @@ public class ForeignLanInfoService {
         return result;
     }
 
-    public CommonResult infoDel(ForeignLanInfoDto[] dtos) {
+    public CommonResult infoDel(SocialRelationshipInfoDto[] dtos) {
         CommonResult result = new CommonResult();
         int row = 0;
-        for (ForeignLanInfoDto dto : dtos) {
+        for (SocialRelationshipInfoDto dto : dtos) {
             row += mapper.infoDel(dto);
         }
         if (row < dtos.length) {
@@ -49,7 +49,7 @@ public class ForeignLanInfoService {
         return result;
     }
 
-    public CommonResult infoUpdate(ForeignLanInfoDto dto) {
+    public CommonResult infoUpdate(SocialRelationshipInfoDto dto) {
         CommonResult result = new CommonResult();
         int row = mapper.infoUpdate(dto);
         if (row == 0) {

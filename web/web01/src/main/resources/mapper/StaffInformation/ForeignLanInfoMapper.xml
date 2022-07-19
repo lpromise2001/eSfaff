@@ -8,11 +8,14 @@
 
     <update id="infoUpdate" parameterType="com.example.web01.dto.StaffInformation.ForeignLanInfoDto">
         update tbl_staff_foreign_language_aptitude
-        set foreign_languages=#{foreign_languages},
+        set
         proficiency_in_foreign_languages=#{proficiency_in_foreign_languages},
         <where>
             <if test="staff_no != null and staff_no != ''">
                 and staff_no = #{staff_no}
+            </if>
+            <if test="foreign_languages != null and foreign_languages != ''">
+                and foreign_languages = #{foreign_languages}
             </if>
         </where>
     </update>

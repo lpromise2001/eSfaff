@@ -1,7 +1,7 @@
 package com.example.web01.controller.StaffInformation;
 
-import com.example.web01.dto.StaffInformation.ForeignLanInfoDto;
-import com.example.web01.service.StaffInformation.ForeignLanInfoService;
+import com.example.web01.dto.StaffInformation.SocialRelationshipInfoDto;
+import com.example.web01.service.StaffInformation.SocialRelationshipInfoService;
 import com.example.web01.util.CommonResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,28 +12,28 @@ import javax.annotation.Resource;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/foreignLanInfo")
-public class ForeignLanInfoController {
+@RequestMapping("/SocialRelationship")
+public class SocialRelationshipInfoController {
     @Resource
-    private ForeignLanInfoService service;
+    private SocialRelationshipInfoService service;
 
     @RequestMapping("/findInfo")
-    public CommonResult findInfo(@RequestBody ForeignLanInfoDto dto) {
+    public CommonResult findInfo(@RequestBody SocialRelationshipInfoDto dto) {
         return service.infoSelect(dto);
     }
 
     @RequestMapping("/infoAdd")
-    public CommonResult infoAdd(@RequestBody ForeignLanInfoDto dto) {
+    public CommonResult infoAdd(@RequestBody SocialRelationshipInfoDto dto) {
         return service.infoAdd(dto);
     }
 
     @RequestMapping("/infoDel")
-    public CommonResult infoDel(@RequestBody ForeignLanInfoDto[] dtos) {
+    public CommonResult infoDel(@RequestBody SocialRelationshipInfoDto[] dtos) {
         return service.infoDel(dtos);
     }
 
     @RequestMapping("/infoUpdate")
-    public CommonResult infoUpdate(@RequestBody ForeignLanInfoDto dto) {
+    public CommonResult infoUpdate(@RequestBody SocialRelationshipInfoDto dto) {
         return service.infoUpdate(dto);
     }
 }
