@@ -1,6 +1,6 @@
 <template>
 	<div id="container">
-		<el-header height="auto" style="padding: 10px;">
+		<el-header height="auto">
 			<div id="top">
 				<div id="logo">
 					东软教育
@@ -15,7 +15,7 @@
 					background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" @select="handleSelect"
 					router>
 					<el-menu-item index="/">返回主页面</el-menu-item>
-					<el-menu-item index="/foreignLanAdd">添加员工信息</el-menu-item>
+					<el-menu-item index="/foreignLanAdd">添加员工外语能力信息</el-menu-item>
 				</el-menu>
 			</div>
 		</el-header>
@@ -216,7 +216,7 @@
 				this.$message('编辑第' + (index + 1) + '行');
 				let str = JSON.stringify(this.foreignLanInfos[index]);
 				sessionStorage.setItem("foreignLanInfo", str);
-				this.$router.push("/foreignLanInfoUpdate");
+				this.$router.push("/ForeignLanUpdate");
 			},
 			handleDelete(index, row) {
 				this.$message.error('删除第' + (index + 1) + '行');
@@ -226,10 +226,10 @@
 					.then(rst => {
 						if (rst.data.code == 200) {
 							// this.$message("操作结束");
-							this.$alert("操作成功", "成功");
+							this.$alert(rst.data.msg, "成功");
 							this.$message.error('删除了' + str);
 						} else {
-							this.$alert("操作失败", "失败");
+							this.$alert(rst.data.msg, "失败");
 						}
 						console.log(rst.data);
 					}).catch(err => {
@@ -256,10 +256,10 @@
 					.then(rst => {
 						if (rst.data.code == 200) {
 							// this.$message("操作结束");
-							this.$alert("操作成功", "成功");
+							this.$alert(rst.data.msg, "成功");
 							this.$message.error('删除了' + str);
 						} else {
-							this.$alert("操作失败", "失败");
+							this.$alert(rst.data.msg, "失败");
 						}
 						console.log(rst.data);
 					}).catch(err => {

@@ -9,4 +9,7 @@ import java.util.List;
 @Mapper
 public interface ForeignLanInfoMapper {
     List<ForeignLanInfo> findByStaffNo(ForeignLanInfoDto dto);
+    int infoAdd(ForeignLanInfoDto dto);
+    int infoDel(ForeignLanInfoDto dto);
+    int infoUpdate(ForeignLanInfoDto dto);
 }

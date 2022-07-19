@@ -1,5 +1,6 @@
 package com.example.web01.controller.StaffInformation;
 
+import com.example.web01.dto.StaffInformation.CareerInformationDto;
 import com.example.web01.dto.StaffInformation.ForeignLanInfoDto;
 import com.example.web01.service.StaffInformation.ForeignLanInfoService;
 import com.example.web01.util.CommonResult;
@@ -20,5 +21,20 @@ public class ForeignLanInfoController {
     @RequestMapping("/findInfo")
     public CommonResult findInfo(@RequestBody ForeignLanInfoDto dto) {
         return service.findInfo(dto);
+    }
+
+    @RequestMapping("/infoAdd")
+    public CommonResult infoAdd(@RequestBody ForeignLanInfoDto dto) {
+        return service.infoAdd(dto);
+    }
+
+    @RequestMapping("/infoDel")
+    public CommonResult infoDel(@RequestBody ForeignLanInfoDto[] dtos) {
+        return service.infoDel(dtos);
+    }
+
+    @RequestMapping("/infoUpdate")
+    public CommonResult infoUpdate(@RequestBody ForeignLanInfoDto dto) {
+        return service.infoUpdate(dto);
     }
 }

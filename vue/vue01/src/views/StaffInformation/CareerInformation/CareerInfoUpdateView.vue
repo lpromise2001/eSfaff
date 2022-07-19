@@ -46,7 +46,7 @@
 					<el-input v-model="CareerInfo.notes"></el-input>
 				</el-form-item>
 				<el-form-item>
-					<el-button type="primary" @click="add()">提交修改</el-button>
+					<el-button size="large" type="primary" @click="add()">提交修改</el-button>
 				</el-form-item>
 			</el-form>
 		</div>
@@ -98,7 +98,7 @@
 						} else {
 							this.$alert("操作失败", rst.data.msg);
 						}
-						
+
 					}).catch(err => {
 						console.log(err);
 					})
@@ -147,12 +147,13 @@
 	}
 
 	#center {
-		width: 100%;
+		width: auto;
 		flex: 1;
 		/*占父容器剩下容量的一份*/
 		display: flex;
 		padding: 20px;
 		box-sizing: border-box;
+		justify-content: center;
 	}
 
 	#bottom {

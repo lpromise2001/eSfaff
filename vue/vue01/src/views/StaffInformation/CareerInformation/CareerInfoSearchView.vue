@@ -185,10 +185,10 @@
 					.then(rst => {
 						if (rst.data.code == 200) {
 							// this.$message("操作结束");
-							this.$alert("操作成功", "成功");
+							this.$alert(rst.data.msg, "成功");
 							this.$message.error('删除了' + str);
 						} else {
-							this.$alert("操作失败", "失败");
+							this.$alert(rst.data.msg, "失败");
 						}
 						console.log(rst.data);
 					}).catch(err => {
@@ -196,7 +196,8 @@
 					})
 
 				this.del_list = [];
-
+				
+				// 刷新搜索框
 				this.search()
 			},
 			delAll() {
@@ -215,10 +216,10 @@
 					.then(rst => {
 						if (rst.data.code == 200) {
 							// this.$message("操作结束");
-							this.$alert("操作成功", "成功");
+							this.$alert(rst.data.msg, "成功");
 							this.$message.error('删除了' + str);
 						} else {
-							this.$alert("操作失败", "失败");
+							this.$alert(rst.data.msg, "失败");
 						}
 						console.log(rst.data);
 					}).catch(err => {

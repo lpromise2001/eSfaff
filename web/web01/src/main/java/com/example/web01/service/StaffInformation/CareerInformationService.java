@@ -36,11 +36,16 @@ public class CareerInformationService {
         CommonResult result = new CommonResult();
         int row = 0;
         for (CareerInformationDto dto : dtos) {
-            row = mapper.infoDel(dto);
+            row += mapper.infoDel(dto);
         }
-        if (row == 0) {
+        if (row < dtos.length) {
             result.setCode(100);
-            result.setMsg("失败");
+            result.setMsg("应删除" + dtos.length + "条数据\n" + "共删除" + row + "条数据");
+        } else if (row == dtos.length) {
+            result.setMsg("成功删除" + row + "条数据");
+        } else {
+            result.setCode(300);
+            result.setMsg("删除了" + row + "条数据");
         }
         return result;
     }
