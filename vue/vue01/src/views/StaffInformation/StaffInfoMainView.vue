@@ -3,7 +3,7 @@
 		<el-header height="auto" style="padding: 10px;">
 			<div id="top">
 				<div id="logo">
-					东软教育
+					员工信息中心
 				</div>
 				<div id="info">
 					<!-- 				欢迎【{{user.userName}}】
